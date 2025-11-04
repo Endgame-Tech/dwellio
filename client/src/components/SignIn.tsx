@@ -46,30 +46,30 @@ export default function SignIn() {
   };
 
   return (
-    <div className="dwellio-dashboard-bg min-h-screen flex">
+    <div className="ubani-dashboard-bg min-h-screen flex">
       {/* Left side - Image/Brand section (hidden on mobile) */}
       <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-dwellio-800/90 to-dwellio-950/90 z-10"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-ubani-800/90 to-ubani-950/90 z-10"></div>
         <img
           src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070"
           alt="Modern apartment interior"
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="relative z-20 flex flex-col justify-center items-center h-full px-12">
-          <div className="dwellio-modern-card max-w-lg p-8 text-center">
+          <div className="ubani-modern-card max-w-lg p-8 text-center">
             <div className="mb-8">
               <Link to="/" className="inline-block">
-                <span className="text-4xl font-bold font-display dwellio-text-gradient">dwellio</span>
+                <span className="text-4xl font-bold font-display ubani-text-gradient">ubani</span>
               </Link>
             </div>
             <blockquote className="italic text-lg mb-6 text-gray-700 dark:text-gray-300">
-              "Dwellio helped me find my dream apartment with half the usual agent fees. Their service was exceptional throughout the entire process."
+              "Ubani helped me find my dream apartment with half the usual agent fees. Their service was exceptional throughout the entire process."
             </blockquote>
             <div className="flex items-center justify-center">
               <img
                 src="https://randomuser.me/api/portraits/women/42.jpg"
                 alt="Testimonial author"
-                className="w-12 h-12 rounded-full mr-4 border-2 border-dwellio-400"
+                className="w-12 h-12 rounded-full mr-4 border-2 border-ubani-400"
               />
               <div className="text-left">
                 <p className="font-semibold text-gray-900 dark:text-white">Sarah Johnson</p>
@@ -102,12 +102,12 @@ export default function SignIn() {
           {/* Logo for mobile view */}
           <div className="text-center mb-8 lg:hidden">
             <Link to="/" className="inline-block">
-              <span className="text-3xl font-bold font-display dwellio-text-gradient">dwellio</span>
+              <span className="text-3xl font-bold font-display ubani-text-gradient">ubani</span>
             </Link>
           </div>
 
-          <div className="dwellio-modern-card p-8">
-            <h2 className="text-2xl font-bold mb-6 text-center dwellio-text-gradient">Welcome Back</h2>
+          <div className="ubani-modern-card p-8">
+            <h2 className="text-2xl font-bold mb-6 text-center ubani-text-gradient">Welcome Back</h2>
 
             {error && (
               <div className="mb-6 p-4 rounded-lg bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800">
@@ -124,7 +124,7 @@ export default function SignIn() {
                   placeholder="your.email@example.com"
                   value={form.email}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 bg-white/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-600 rounded-lg backdrop-blur-sm focus:ring-2 focus:ring-dwellio-500 focus:border-dwellio-500 transition-all duration-300 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
+                  className="w-full px-4 py-3 bg-white/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-600 rounded-lg backdrop-blur-sm focus:ring-2 focus:ring-ubani-500 focus:border-ubani-500 transition-all duration-300 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
                   required
                 />
               </div>
@@ -138,19 +138,19 @@ export default function SignIn() {
                     placeholder="••••••••"
                     value={form.password}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 pr-12 bg-white/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-600 rounded-lg backdrop-blur-sm focus:ring-2 focus:ring-dwellio-500 focus:border-dwellio-500 transition-all duration-300 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
+                    className="w-full px-4 py-3 pr-12 bg-white/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-600 rounded-lg backdrop-blur-sm focus:ring-2 focus:ring-ubani-500 focus:border-ubani-500 transition-all duration-300 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
                     required
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 dark:text-gray-400 hover:text-dwellio-600 dark:hover:text-dwellio-400 transition-colors"
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 dark:text-gray-400 hover:text-ubani-600 dark:hover:text-ubani-400 transition-colors"
                   >
                     {showPassword ? <FaEyeSlash className="w-5 h-5" /> : <FaEye className="w-5 h-5" />}
                   </button>
                 </div>
                 <div className="flex justify-end mt-2">
-                  <Link to="/forgot-password" className="text-sm text-dwellio-600 dark:text-dwellio-400 hover:text-dwellio-800 dark:hover:text-dwellio-300 transition-colors">
+                  <Link to="/forgot-password" className="text-sm text-ubani-600 dark:text-ubani-400 hover:text-ubani-800 dark:hover:text-ubani-300 transition-colors">
                     Forgot password?
                   </Link>
                 </div>
@@ -158,7 +158,7 @@ export default function SignIn() {
 
               <button
                 type="submit"
-                className="w-full dwellio-button-gradient py-3 rounded-lg font-semibold transition-all duration-300 disabled:opacity-50 flex items-center justify-center"
+                className="w-full ubani-button-gradient py-3 rounded-lg font-semibold transition-all duration-300 disabled:opacity-50 flex items-center justify-center"
                 disabled={loading}
               >
                 {loading ? (
@@ -177,7 +177,7 @@ export default function SignIn() {
 
             <div className="mt-6 text-center">
               <span className="text-gray-600 dark:text-gray-400">Don't have an account? </span>
-              <Link to="/signup" className="dwellio-text-gradient font-medium hover:underline transition-all duration-300">
+              <Link to="/signup" className="ubani-text-gradient font-medium hover:underline transition-all duration-300">
                 Sign Up
               </Link>
             </div>

@@ -4,6 +4,8 @@ import { propertiesApi } from '../services/api';
 import { toast } from 'react-toastify';
 import type { Property } from '../types';
 import Navbar from '../components/Navbar';
+import PageContainer from '../components/PageContainer';
+import Footer from '../components/Footer';
 import {
   FiMapPin,
   FiSearch,
@@ -75,13 +77,13 @@ export default function Properties() {
   const getStatusBadge = (status: string) => {
     switch (status) {
       case 'available':
-        return <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">Available</span>;
+        return <span className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold bg-ubani-yellow/20 text-ubani-yellow border border-ubani-yellow/30">Available</span>;
       case 'occupied':
-        return <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800">Occupied</span>;
+        return <span className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold bg-white/10 text-gray-300 border border-white/20">Occupied</span>;
       case 'pending':
-        return <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">Pending</span>;
+        return <span className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold bg-orange-500/20 text-orange-400 border border-orange-500/30">Pending</span>;
       default:
-        return <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800">{status}</span>;
+        return <span className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold bg-white/10 text-gray-300 border border-white/20">{status}</span>;
     }
   };
 
@@ -109,77 +111,80 @@ export default function Properties() {
     const imageUrl = property.images?.[0] || 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1000&q=80';
 
     return (
-      <div className="group relative bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-100 overflow-hidden">
+      <div className="group relative bg-[#1a1a1a] rounded-3xl shadow-sm hover:shadow-2xl transition-all duration-300 hover:scale-105 border border-white/10 hover:border-ubani-yellow/30 overflow-hidden">
         {/* Image */}
         <div className="relative w-full h-64 overflow-hidden">
-          <img src={imageUrl} alt={property.title || 'Property'} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-          
+          <img src={imageUrl} alt={property.title || 'Property'} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+
+          {/* Gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-ubani-black/80 via-ubani-black/20 to-transparent opacity-60"></div>
+
           {/* Heart icon */}
-          <button className="absolute top-3 left-3 p-2 bg-white/90 rounded-full text-gray-600 hover:text-red-500 hover:bg-white shadow-sm transition-colors">
-            <FiHeart className="w-4 h-4" />
+          <button className="absolute top-4 left-4 w-10 h-10 rounded-full bg-ubani-black/60 backdrop-blur-sm flex items-center justify-center text-white hover:text-ubani-yellow hover:bg-ubani-black/80 transition-all transform hover:scale-110">
+            <FiHeart className="w-5 h-5" />
           </button>
 
           {/* Status badge */}
-          <div className="absolute top-3 right-3">
+          <div className="absolute top-4 right-4">
             {getStatusBadge(property.status)}
           </div>
 
           {/* View Details button */}
           <Link
             to={`/properties/${property._id}`}
-            className="absolute bottom-3 right-3 w-10 h-10 rounded-full bg-dwellio-600 hover:bg-dwellio-700 flex items-center justify-center text-white transition-colors shadow-lg opacity-0 group-hover:opacity-100"
+            className="absolute bottom-4 right-4 w-12 h-12 rounded-full bg-ubani-yellow hover:bg-ubani-yellow/90 flex items-center justify-center text-ubani-black transition-all shadow-xl opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0"
             title="View Details"
           >
-            <FiArrowRight className="w-5 h-5" />
+            <FiArrowRight className="w-6 h-6" />
           </Link>
         </div>
 
         {/* Content */}
-        <div className="p-4">
+        <div className="p-6">
           {/* Location and Rating */}
-          <div className="flex items-start justify-between mb-2">
+          <div className="flex items-start justify-between mb-3">
             <div className="flex-1">
-              <p className="text-sm font-medium text-gray-700 mb-1">
+              <p className="text-sm font-semibold text-white mb-1">
                 {property.location.city}, {property.location.state}
               </p>
-              <p className="text-xs text-gray-500 line-clamp-1">
+              <p className="text-xs text-gray-400 line-clamp-1">
                 {property.location.address}
               </p>
             </div>
-            <div className="flex items-center ml-2">
-              <FiStar className="w-4 h-4 text-yellow-400 fill-current" />
-              <span className="text-sm font-medium text-gray-700 ml-1">4.8</span>
+            <div className="flex items-center ml-3 bg-ubani-yellow/10 px-2 py-1 rounded-lg">
+              <FiStar className="w-4 h-4 text-ubani-yellow fill-current" />
+              <span className="text-sm font-semibold text-ubani-yellow ml-1">4.8</span>
             </div>
           </div>
 
           {/* Property Type */}
-          <p className="text-sm text-gray-600 mb-3 capitalize">
+          <p className="text-sm text-ubani-yellow mb-3 capitalize font-medium">
             {property.propertyType || 'Apartment'}
           </p>
 
           {/* Features */}
-          <div className="flex items-center gap-4 mb-4 text-xs text-gray-600">
-            <div className="flex items-center gap-1">
-              <FiHome className="w-3 h-3" />
+          <div className="flex items-center gap-4 mb-4 text-xs text-gray-400">
+            <div className="flex items-center gap-1.5">
+              <FiHome className="w-4 h-4 text-ubani-yellow" />
               <span>{property.bedrooms || 'N/A'} beds</span>
             </div>
-            <div className="flex items-center gap-1">
-              <FiDroplet className="w-3 h-3" />
+            <div className="flex items-center gap-1.5">
+              <FiDroplet className="w-4 h-4 text-ubani-yellow" />
               <span>{property.bathrooms || 'N/A'} baths</span>
             </div>
-            <div className="flex items-center gap-1">
-              <FiSquare className="w-3 h-3" />
+            <div className="flex items-center gap-1.5">
+              <FiSquare className="w-4 h-4 text-ubani-yellow" />
               <span>120 m²</span>
             </div>
           </div>
 
           {/* Price */}
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between pt-4 border-t border-white/10">
             <div>
-              <p className="text-lg font-bold text-gray-900">
+              <p className="text-2xl font-bold text-white">
                 {formatShortCurrency(property.rent.amount)}
               </p>
-              <p className="text-sm text-gray-500">per {property.rent.period}</p>
+              <p className="text-sm text-gray-400">per {property.rent.period}</p>
             </div>
           </div>
         </div>
@@ -189,165 +194,181 @@ export default function Properties() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+      <div className="min-h-screen flex items-center justify-center bg-ubani-black">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-dwellio-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading properties...</p>
+          <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-ubani-yellow mx-auto mb-6"></div>
+          <p className="text-gray-300 text-lg">Loading properties...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <>
+    <div className="min-h-screen bg-ubani-black font-sans">
       <Navbar />
-      <div className="min-h-screen bg-gray-50">
+
       {/* Header */}
-      <div className="bg-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-3xl font-bold text-gray-900">Stay Somewhere Amazing</h1>
-              <p className="text-gray-600 mt-1">
-                Find the perfect rental property for your needs
-              </p>
-            </div>
-            <div className="hidden lg:block">
-              <div className="text-sm text-gray-500">
-                {filteredProperties.length} properties available
+      <div className="bg-ubani-black border-b border-white/10">
+        <PageContainer>
+          <div className="py-12 sm:py-16">
+            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+              <div>
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-3">
+                  Stay Somewhere <span className="text-ubani-yellow">Amazing</span>
+                </h1>
+                <p className="text-lg sm:text-xl text-gray-300">
+                  Find the perfect rental property for your needs
+                </p>
+              </div>
+              <div className="flex items-center gap-3 bg-[#1a1a1a] px-6 py-4 rounded-2xl border border-white/10">
+                <div className="w-12 h-12 rounded-xl bg-ubani-yellow/10 flex items-center justify-center">
+                  <FiHome className="w-6 h-6 text-ubani-yellow" />
+                </div>
+                <div>
+                  <p className="text-3xl font-bold text-white">{filteredProperties.length}</p>
+                  <p className="text-sm text-gray-400">Properties Available</p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </PageContainer>
       </div>
 
       {/* Search and Filters */}
-      <div className="bg-white shadow-sm border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          {/* Search Bar */}
-          <div className="mb-6">
-            <div className="relative max-w-lg">
-              <FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-              <input
-                type="text"
-                placeholder="Search by location, property type..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-full focus:ring-2 focus:ring-dwellio-500 focus:border-dwellio-500 transition-all duration-300"
-              />
+      <div className="bg-[#0a0a0a] border-b border-white/10 sticky top-0 z-40 backdrop-blur-sm">
+        <PageContainer>
+          <div className="py-6">
+            {/* Search Bar */}
+            <div className="mb-6">
+              <div className="relative max-w-2xl">
+                <FiSearch className="absolute left-5 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                <input
+                  type="text"
+                  placeholder="Search by location, property type..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full pl-14 pr-6 py-4 bg-ubani-black border border-white/10 rounded-2xl text-white placeholder-gray-500 focus:ring-2 focus:ring-ubani-yellow focus:border-ubani-yellow transition-all duration-300"
+                />
+              </div>
             </div>
-          </div>
 
-          {/* Filters */}
-          <div className="flex flex-wrap gap-4">
-            {/* Property Type Filter */}
-            <select
-              value={propertyType}
-              onChange={(e) => setPropertyType(e.target.value)}
-              className="px-4 py-2 border border-gray-300 rounded-full text-sm focus:ring-2 focus:ring-dwellio-500 focus:border-dwellio-500"
-            >
-              <option value="all">All Types</option>
-              <option value="flat">Flat</option>
-              <option value="duplex">Duplex</option>
-              <option value="bungalow">Bungalow</option>
-              <option value="studio">Studio</option>
-            </select>
+            {/* Filters */}
+            <div className="flex flex-wrap items-center gap-3">
+              {/* Property Type Filter */}
+              <select
+                value={propertyType}
+                onChange={(e) => setPropertyType(e.target.value)}
+                className="px-5 py-3 bg-[#1a1a1a] border border-white/10 rounded-xl text-sm text-white focus:ring-2 focus:ring-ubani-yellow focus:border-ubani-yellow transition-all"
+              >
+                <option value="all">All Types</option>
+                <option value="flat">Flat</option>
+                <option value="duplex">Duplex</option>
+                <option value="bungalow">Bungalow</option>
+                <option value="studio">Studio</option>
+              </select>
 
-            {/* Price Range Filter */}
-            <select
-              value={priceRange}
-              onChange={(e) => setPriceRange(e.target.value)}
-              className="px-4 py-2 border border-gray-300 rounded-full text-sm focus:ring-2 focus:ring-dwellio-500 focus:border-dwellio-500"
-            >
-              <option value="all">All Prices</option>
-              <option value="under-1m">Under ₦1M</option>
-              <option value="1m-5m">₦1M - ₦5M</option>
-              <option value="5m-10m">₦5M - ₦10M</option>
-              <option value="above-10m">Above ₦10M</option>
-            </select>
+              {/* Price Range Filter */}
+              <select
+                value={priceRange}
+                onChange={(e) => setPriceRange(e.target.value)}
+                className="px-5 py-3 bg-[#1a1a1a] border border-white/10 rounded-xl text-sm text-white focus:ring-2 focus:ring-ubani-yellow focus:border-ubani-yellow transition-all"
+              >
+                <option value="all">All Prices</option>
+                <option value="under-1m">Under ₦1M</option>
+                <option value="1m-5m">₦1M - ₦5M</option>
+                <option value="5m-10m">₦5M - ₦10M</option>
+                <option value="above-10m">Above ₦10M</option>
+              </select>
 
-            {/* Status Filter */}
-            <div className="flex items-center gap-2">
-              {[
-                { key: 'all', label: 'All' },
-                { key: 'available', label: 'Available' },
-                { key: 'rented', label: 'Rented' }
-              ].map(tab => (
+              {/* Status Filter */}
+              <div className="flex items-center gap-2">
+                {[
+                  { key: 'all', label: 'All' },
+                  { key: 'available', label: 'Available' },
+                  { key: 'rented', label: 'Rented' }
+                ].map(tab => (
+                  <button
+                    key={tab.key}
+                    onClick={() => setFilter(tab.key as 'all' | 'available' | 'rented')}
+                    className={`px-5 py-3 rounded-xl text-sm font-semibold transition-all duration-300 ${filter === tab.key
+                      ? 'bg-ubani-yellow text-ubani-black'
+                      : 'bg-[#1a1a1a] text-gray-400 hover:bg-[#222222] hover:text-white border border-white/10'
+                      }`}
+                  >
+                    {tab.label}
+                  </button>
+                ))}
+              </div>
+
+              {/* View Toggle */}
+              <div className="ml-auto flex items-center bg-[#1a1a1a] border border-white/10 rounded-xl p-1">
                 <button
-                  key={tab.key}
-                  onClick={() => setFilter(tab.key as 'all' | 'available' | 'rented')}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${filter === tab.key
-                      ? 'bg-dwellio-600 text-white'
-                      : 'bg-gray-100 hover:bg-gray-200 text-gray-700'
+                  onClick={() => setViewMode('grid')}
+                  className={`p-2.5 rounded-lg transition-all ${viewMode === 'grid'
+                    ? 'bg-ubani-yellow text-ubani-black shadow-sm'
+                    : 'text-gray-400 hover:text-white'
                     }`}
+                  title="Grid View"
                 >
-                  {tab.label}
+                  <FiGrid className="w-4 h-4" />
                 </button>
-              ))}
-            </div>
-
-            {/* View Toggle */}
-            <div className="ml-auto flex items-center bg-gray-100 rounded-full p-1">
-              <button
-                onClick={() => setViewMode('grid')}
-                className={`p-2 rounded-full transition-colors ${viewMode === 'grid'
-                    ? 'bg-white text-dwellio-600 shadow-sm'
-                    : 'text-gray-600 hover:text-gray-800'
-                  }`}
-                title="Grid View"
-              >
-                <FiGrid className="w-4 h-4" />
-              </button>
-              <button
-                onClick={() => setViewMode('list')}
-                className={`p-2 rounded-full transition-colors ${viewMode === 'list'
-                    ? 'bg-white text-dwellio-600 shadow-sm'
-                    : 'text-gray-600 hover:text-gray-800'
-                  }`}
-                title="List View"
-              >
-                <FiList className="w-4 h-4" />
-              </button>
+                <button
+                  onClick={() => setViewMode('list')}
+                  className={`p-2.5 rounded-lg transition-all ${viewMode === 'list'
+                    ? 'bg-ubani-yellow text-ubani-black shadow-sm'
+                    : 'text-gray-400 hover:text-white'
+                    }`}
+                  title="List View"
+                >
+                  <FiList className="w-4 h-4" />
+                </button>
+              </div>
             </div>
           </div>
-        </div>
+        </PageContainer>
       </div>
 
       {/* Properties Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {filteredProperties.length === 0 ? (
-          <div className="text-center py-16">
-            <FiHome className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">No properties found</h3>
-            <p className="text-gray-600 mb-8 max-w-md mx-auto">
-              {searchTerm
-                ? `No properties match your search criteria.`
-                : `No ${filter === 'all' ? '' : filter + ' '}properties available at the moment.`}
-            </p>
-            <button
-              onClick={() => {
-                setSearchTerm('');
-                setFilter('all');
-                setPriceRange('all');
-                setPropertyType('all');
-              }}
-              className="bg-dwellio-600 hover:bg-dwellio-700 text-white px-6 py-3 rounded-full font-medium transition-colors"
-            >
-              Clear Filters
-            </button>
-          </div>
-        ) : (
-          <div className={`grid gap-6 ${viewMode === 'grid' 
-              ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4' 
+      <div className="py-12 sm:py-16">
+        <PageContainer>
+          {filteredProperties.length === 0 ? (
+            <div className="text-center py-20">
+              <div className="w-24 h-24 rounded-3xl bg-ubani-yellow/10 flex items-center justify-center mx-auto mb-6">
+                <FiHome className="w-12 h-12 text-ubani-yellow" />
+              </div>
+              <h3 className="text-2xl sm:text-3xl font-bold text-white mb-3">No properties found</h3>
+              <p className="text-gray-400 mb-10 max-w-md mx-auto text-lg">
+                {searchTerm
+                  ? `No properties match your search criteria.`
+                  : `No ${filter === 'all' ? '' : filter + ' '}properties available at the moment.`}
+              </p>
+              <button
+                onClick={() => {
+                  setSearchTerm('');
+                  setFilter('all');
+                  setPriceRange('all');
+                  setPropertyType('all');
+                }}
+                className="bg-ubani-yellow hover:bg-ubani-yellow/90 text-ubani-black px-8 py-4 rounded-full font-semibold transition-all transform hover:scale-105 shadow-xl"
+              >
+                Clear Filters
+              </button>
+            </div>
+          ) : (
+            <div className={`grid gap-6 ${viewMode === 'grid'
+              ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
               : 'grid-cols-1'
-            }`}>
-            {filteredProperties.map((property) => (
-              <PropertyCard key={property._id} property={property} />
-            ))}
-          </div>
-        )}
+              }`}>
+              {filteredProperties.map((property) => (
+                <PropertyCard key={property._id} property={property} />
+              ))}
+            </div>
+          )}
+        </PageContainer>
       </div>
+
+      {/* Footer */}
+      <Footer />
     </div>
-    </>
   );
 }

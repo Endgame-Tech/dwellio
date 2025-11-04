@@ -105,7 +105,7 @@ export default function AdminLayout() {
             <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
               <span className="text-white font-bold text-sm">D</span>
             </div>
-            <span className="text-gray-900 text-lg font-bold">Dwellio Admin</span>
+            <span className="text-gray-900 text-lg font-bold">Ubani Admin</span>
           </Link>
           {isMobile && (
             <button

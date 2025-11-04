@@ -1,6 +1,6 @@
-# Dwellio - Property Management Web Application
+# Ubani - Property Management Web Application
 
-Dwellio is a modern property management web application that facilitates property rental, buying, and selling. It provides a user-friendly interface for both tenants and landlords.
+Ubani is a modern property management web application that facilitates property rental, buying, and selling. It provides a user-friendly interface for both tenants and landlords.
 
 ## Features
 
@@ -13,12 +13,14 @@ Dwellio is a modern property management web application that facilitates propert
 ## Tech Stack
 
 ### Frontend
+
 - React.js with TypeScript
 - React Router for navigation
 - TailwindCSS for styling
 - React Icons for UI elements
 
 ### Backend
+
 - Node.js with Express
 - MongoDB with Mongoose ODM
 - JWT for authentication
@@ -36,6 +38,7 @@ The project is organized into:
 ## Getting Started
 
 ### Prerequisites
+
 - Node.js (v16 or higher)
 - npm or yarn
 - MongoDB instance (local or Atlas)
@@ -43,12 +46,14 @@ The project is organized into:
 ### Installation
 
 1. Clone the repository:
+
 ```bash
-git clone https://github.com/yourusername/dwellio.git
-cd dwellio
+git clone https://github.com/yourusername/ubani.git
+cd ubani
 ```
 
 2. Install dependencies for both client and server:
+
 ```bash
 # Install client dependencies
 cd client
@@ -60,6 +65,7 @@ npm install
 ```
 
 3. Set up environment variables:
+
    - Create a `.env` file in the server directory with the following variables:
      ```
      PORT=3000
@@ -68,6 +74,7 @@ npm install
      ```
 
 4. Run the development servers:
+
 ```bash
 # Run client (from client directory)
 npm run dev
@@ -84,4 +91,4 @@ npm run dev
 
 Your Name - youremail@example.com
 
-Project Link: [https://github.com/yourusername/dwellio](https://github.com/yourusername/dwellio)
+Project Link: [https://github.com/yourusername/ubani](https://github.com/yourusername/ubani)

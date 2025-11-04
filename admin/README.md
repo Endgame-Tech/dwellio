@@ -1,6 +1,6 @@
-# Dwellio Admin Dashboard
+# Ubani Admin Dashboard
 
-A comprehensive React-based admin dashboard for managing the Dwellio property management platform.
+A comprehensive React-based admin dashboard for managing the Ubani property management platform.
 
 ## Features
 
@@ -38,27 +38,32 @@ A comprehensive React-based admin dashboard for managing the Dwellio property ma
 ### Installation
 
 1. Clone the repository:
+
 ```bash
 git clone <repository-url>
-cd dwellio/admin
+cd ubani/admin
 ```
 
 2. Install dependencies:
+
 ```bash
 npm install
 ```
 
 3. Create environment file:
+
 ```bash
 cp .env.example .env
 ```
 
 4. Update the environment variables in `.env`:
+
 ```env
 VITE_API_BASE_URL=http://localhost:5000/api
 ```
 
 5. Start the development server:
+
 ```bash
 npm run dev
 ```
@@ -97,23 +102,27 @@ src/
 ## Key Components
 
 ### Authentication
+
 - Login page with secure authentication
 - JWT token management
 - Protected routes with permission checks
 
 ### Dashboard
+
 - Real-time statistics cards
 - Interactive charts (Line, Bar, Pie)
 - Quick action buttons
 - Recent activity feed
 
 ### User Management
+
 - User listing with filters and search
 - User verification and status management
 - Bulk operations
 - CSV export functionality
 
 ### Permission System
+
 - Role-based access control
 - Granular permissions
 - Route-level protection
@@ -122,12 +131,14 @@ src/
 ## API Integration
 
 The admin dashboard connects to the backend API for:
+
 - User authentication and authorization
 - Data fetching and manipulation
 - File uploads
 - Real-time updates
 
 API endpoints are configured in `src/services/api.ts` with:
+
 - Automatic token attachment
 - Error handling and notifications
 - Response interceptors
@@ -136,6 +147,7 @@ API endpoints are configured in `src/services/api.ts` with:
 ## Styling
 
 The application uses Tailwind CSS with custom admin theme:
+
 - Consistent color palette
 - Responsive design patterns
 - Custom component classes
@@ -167,17 +179,20 @@ The application uses Tailwind CSS with custom admin theme:
 ## Development Guidelines
 
 ### Code Style
+
 - TypeScript for type safety
 - ESLint for code quality
 - Consistent naming conventions
 - Component-based architecture
 
 ### State Management
+
 - React Context for global state
 - React Query for server state
 - Local state for component state
 
 ### Error Handling
+
 - Global error boundaries
 - API error handling
 - User-friendly error messages
@@ -186,12 +201,15 @@ The application uses Tailwind CSS with custom admin theme:
 ## Deployment
 
 ### Environment Variables
+
 Set the following environment variables for production:
+
 - `VITE_API_BASE_URL`: Backend API URL
 - `VITE_APP_NAME`: Application name
 - `VITE_APP_VERSION`: Version number
 
 ### Build Process
+
 1. Install dependencies
 2. Run build command
 3. Deploy `dist` folder to web server
@@ -207,11 +225,12 @@ Set the following environment variables for production:
 
 ## License
 
-This project is proprietary software for Dwellio platform.
+This project is proprietary software for Ubani platform.
 
 ## Support
 
 For technical support or questions:
+
 - Create an issue in the repository
 - Contact the development team
 - Check the documentation

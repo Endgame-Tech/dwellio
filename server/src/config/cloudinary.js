@@ -1,4 +1,4 @@
-const cloudinary = require('cloudinary').v2;
+const cloudinary = require("cloudinary").v2;
 
 // Configure Cloudinary
 cloudinary.config({
@@ -11,23 +11,22 @@ cloudinary.config({
 const uploadImage = async (buffer, options = {}) => {
   return new Promise((resolve, reject) => {
     const uploadOptions = {
-      resource_type: 'image',
-      folder: 'dwellio/house-images',
-      quality: 'auto',
-      fetch_format: 'auto',
-      ...options
+      resource_type: "image",
+      folder: "ubani/house-images",
+      quality: "auto",
+      fetch_format: "auto",
+      ...options,
     };
 
-    cloudinary.uploader.upload_stream(
-      uploadOptions,
-      (error, result) => {
+    cloudinary.uploader
+      .upload_stream(uploadOptions, (error, result) => {
         if (error) {
           reject(error);
         } else {
           resolve(result);
         }
-      }
-    ).end(buffer);
+      })
+      .end(buffer);
   });
 };
 
@@ -44,5 +43,5 @@ const deleteImage = async (publicId) => {
 module.exports = {
   cloudinary,
   uploadImage,
-  deleteImage
+  deleteImage,
 };

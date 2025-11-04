@@ -1,4 +1,4 @@
-// Type definitions for Dwellio tenant application
+// Type definitions for Ubani tenant application
 
 // User and Authentication Types
 export interface User {

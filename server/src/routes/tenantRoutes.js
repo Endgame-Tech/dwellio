@@ -1,4 +1,4 @@
-// dwellio/routes/tenantRoutes.js
+// ubani/routes/tenantRoutes.js
 import express from "express";
 import {
   getTenantProfile,

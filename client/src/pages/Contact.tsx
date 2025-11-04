@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import Navbar from '../components/Navbar';
+import PageContainer from '../components/PageContainer';
+import Footer from '../components/Footer';
 import { toast } from 'react-toastify';
-import { 
-  FiMail, 
-  FiPhone, 
-  FiMapPin, 
+import {
+  FiMail,
+  FiPhone,
+  FiMapPin,
   FiClock,
   FiSend,
   FiUser,
@@ -44,7 +46,7 @@ export default function Contact() {
     try {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 2000));
-      
+
       toast.success('Message sent successfully! We\'ll get back to you soon.');
       setFormData({
         firstName: '',
@@ -56,7 +58,7 @@ export default function Contact() {
         message: '',
         priority: 'normal'
       });
-    } catch (error) {
+    } catch {
       toast.error('Failed to send message. Please try again.');
     } finally {
       setIsSubmitting(false);
@@ -73,7 +75,7 @@ export default function Contact() {
     {
       icon: <FiMail className="w-6 h-6" />,
       title: "Email",
-      details: ["info@dwellio.com", "support@dwellio.com"],
+      details: ["info@ubani.com", "support@ubani.com"],
       description: "We respond within 2 hours"
     },
     {
@@ -93,25 +95,25 @@ export default function Contact() {
   const departments = [
     {
       name: "Sales",
-      email: "sales@dwellio.com",
+      email: "sales@ubani.com",
       phone: "+234 800 123 4567",
       description: "New inquiries and partnerships"
     },
     {
       name: "Support",
-      email: "support@dwellio.com",
+      email: "support@ubani.com",
       phone: "+234 801 234 5678",
       description: "Technical support and assistance"
     },
     {
       name: "Property Management",
-      email: "properties@dwellio.com",
+      email: "properties@ubani.com",
       phone: "+234 802 345 6789",
       description: "Property listings and management"
     },
     {
       name: "Finance",
-      email: "finance@dwellio.com",
+      email: "finance@ubani.com",
       phone: "+234 803 456 7890",
       description: "Billing and payment inquiries"
     }
@@ -137,33 +139,33 @@ export default function Contact() {
   ];
 
   return (
-    <>
+    <div className="min-h-screen bg-ubani-black font-sans">
       <Navbar />
-      <div className="min-h-screen bg-gray-50">
-        {/* Hero Section */}
-        <div className="relative bg-gradient-to-br from-dwellio-600 to-dwellio-800 text-white">
-          <div className="absolute inset-0 bg-black/20"></div>
-          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-            <div className="text-center">
-              <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                Get in <span className="text-yellow-400">Touch</span>
-              </h1>
-              <p className="text-xl md:text-2xl text-dwellio-100 max-w-3xl mx-auto leading-relaxed">
-                We're here to help with all your property management needs. Reach out to us today!
-              </p>
-            </div>
-          </div>
-        </div>
 
-        {/* Contact Form and Info */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div className="grid lg:grid-cols-3 gap-12">
+      {/* Hero Section */}
+      <div className="relative bg-ubani-black border-b border-white/10">
+        <PageContainer>
+          <div className="py-16 sm:py-20 lg:py-24 text-center">
+            <h1 className="text-4xl text-white sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6">
+              Get in <span className="text-ubani-yellow">Touch</span>
+            </h1>
+            <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+              We're here to help with all your property management needs. Reach out to us today!
+            </p>
+          </div>
+        </PageContainer>
+      </div>
+
+      {/* Contact Form and Info */}
+      <div className="py-12 sm:py-16">
+        <PageContainer>
+          <div className="grid lg:grid-cols-3 gap-8 lg:gap-12">
             {/* Contact Form */}
             <div className="lg:col-span-2">
-              <div className="bg-white rounded-3xl shadow-xl p-8">
+              <div className="bg-[#1a1a1a] rounded-3xl border border-white/10 p-8 sm:p-10">
                 <div className="mb-8">
-                  <h2 className="text-3xl font-bold text-gray-900 mb-4">Send us a Message</h2>
-                  <p className="text-gray-600">
+                  <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">Send us a Message</h2>
+                  <p className="text-gray-400 text-lg">
                     Fill out the form below and we'll get back to you as soon as possible.
                   </p>
                 </div>
@@ -172,11 +174,11 @@ export default function Contact() {
                   {/* Name Fields */}
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
-                      <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-2">
+                      <label htmlFor="firstName" className="block text-sm font-medium text-gray-300 mb-2">
                         First Name *
                       </label>
                       <div className="relative">
-                        <FiUser className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                        <FiUser className="absolute left-4 top-1/2 transform -translate-y-1/2 text-ubani-yellow w-5 h-5" />
                         <input
                           type="text"
                           id="firstName"
@@ -184,17 +186,17 @@ export default function Contact() {
                           value={formData.firstName}
                           onChange={handleInputChange}
                           required
-                          className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-dwellio-500 focus:border-dwellio-500 transition-all"
+                          className="w-full pl-12 pr-4 py-3 bg-ubani-black border border-white/10 rounded-xl text-white placeholder-gray-500 focus:ring-2 focus:ring-ubani-yellow focus:border-ubani-yellow transition-all"
                           placeholder="Enter your first name"
                         />
                       </div>
                     </div>
                     <div>
-                      <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-2">
+                      <label htmlFor="lastName" className="block text-sm font-medium text-gray-300 mb-2">
                         Last Name *
                       </label>
                       <div className="relative">
-                        <FiUser className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                        <FiUser className="absolute left-4 top-1/2 transform -translate-y-1/2 text-ubani-yellow w-5 h-5" />
                         <input
                           type="text"
                           id="lastName"
@@ -202,7 +204,7 @@ export default function Contact() {
                           value={formData.lastName}
                           onChange={handleInputChange}
                           required
-                          className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-dwellio-500 focus:border-dwellio-500 transition-all"
+                          className="w-full pl-12 pr-4 py-3 bg-ubani-black border border-white/10 rounded-xl text-white placeholder-gray-500 focus:ring-2 focus:ring-ubani-yellow focus:border-ubani-yellow transition-all"
                           placeholder="Enter your last name"
                         />
                       </div>
@@ -212,11 +214,11 @@ export default function Contact() {
                   {/* Contact Fields */}
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                      <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
                         Email Address *
                       </label>
                       <div className="relative">
-                        <FiMail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                        <FiMail className="absolute left-4 top-1/2 transform -translate-y-1/2 text-ubani-yellow w-5 h-5" />
                         <input
                           type="email"
                           id="email"
@@ -224,24 +226,24 @@ export default function Contact() {
                           value={formData.email}
                           onChange={handleInputChange}
                           required
-                          className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-dwellio-500 focus:border-dwellio-500 transition-all"
+                          className="w-full pl-12 pr-4 py-3 bg-ubani-black border border-white/10 rounded-xl text-white placeholder-gray-500 focus:ring-2 focus:ring-ubani-yellow focus:border-ubani-yellow transition-all"
                           placeholder="Enter your email"
                         />
                       </div>
                     </div>
                     <div>
-                      <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+                      <label htmlFor="phone" className="block text-sm font-medium text-gray-300 mb-2">
                         Phone Number
                       </label>
                       <div className="relative">
-                        <FiPhone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                        <FiPhone className="absolute left-4 top-1/2 transform -translate-y-1/2 text-ubani-yellow w-5 h-5" />
                         <input
                           type="tel"
                           id="phone"
                           name="phone"
                           value={formData.phone}
                           onChange={handleInputChange}
-                          className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-dwellio-500 focus:border-dwellio-500 transition-all"
+                          className="w-full pl-12 pr-4 py-3 bg-ubani-black border border-white/10 rounded-xl text-white placeholder-gray-500 focus:ring-2 focus:ring-ubani-yellow focus:border-ubani-yellow transition-all"
                           placeholder="Enter your phone number"
                         />
                       </div>
@@ -251,7 +253,7 @@ export default function Contact() {
                   {/* Subject and Category */}
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
-                      <label htmlFor="category" className="block text-sm font-medium text-gray-700 mb-2">
+                      <label htmlFor="category" className="block text-sm font-medium text-gray-300 mb-2">
                         Category *
                       </label>
                       <select
@@ -260,7 +262,7 @@ export default function Contact() {
                         value={formData.category}
                         onChange={handleInputChange}
                         required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-dwellio-500 focus:border-dwellio-500 transition-all"
+                        className="w-full px-4 py-3 bg-ubani-black border border-white/10 rounded-xl text-white focus:ring-2 focus:ring-ubani-yellow focus:border-ubani-yellow transition-all"
                       >
                         <option value="general">General Inquiry</option>
                         <option value="sales">Sales</option>
@@ -271,7 +273,7 @@ export default function Contact() {
                       </select>
                     </div>
                     <div>
-                      <label htmlFor="priority" className="block text-sm font-medium text-gray-700 mb-2">
+                      <label htmlFor="priority" className="block text-sm font-medium text-gray-300 mb-2">
                         Priority
                       </label>
                       <select
@@ -279,7 +281,7 @@ export default function Contact() {
                         name="priority"
                         value={formData.priority}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-dwellio-500 focus:border-dwellio-500 transition-all"
+                        className="w-full px-4 py-3 bg-ubani-black border border-white/10 rounded-xl text-white focus:ring-2 focus:ring-ubani-yellow focus:border-ubani-yellow transition-all"
                       >
                         <option value="low">Low</option>
                         <option value="normal">Normal</option>
@@ -291,11 +293,11 @@ export default function Contact() {
 
                   {/* Subject */}
                   <div>
-                    <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="subject" className="block text-sm font-medium text-gray-300 mb-2">
                       Subject *
                     </label>
                     <div className="relative">
-                      <FiMessageSquare className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                      <FiMessageSquare className="absolute left-4 top-1/2 transform -translate-y-1/2 text-ubani-yellow w-5 h-5" />
                       <input
                         type="text"
                         id="subject"
@@ -303,7 +305,7 @@ export default function Contact() {
                         value={formData.subject}
                         onChange={handleInputChange}
                         required
-                        className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-dwellio-500 focus:border-dwellio-500 transition-all"
+                        className="w-full pl-12 pr-4 py-3 bg-ubani-black border border-white/10 rounded-xl text-white placeholder-gray-500 focus:ring-2 focus:ring-ubani-yellow focus:border-ubani-yellow transition-all"
                         placeholder="Brief description of your inquiry"
                       />
                     </div>
@@ -311,7 +313,7 @@ export default function Contact() {
 
                   {/* Message */}
                   <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
                       Message *
                     </label>
                     <textarea
@@ -321,7 +323,7 @@ export default function Contact() {
                       onChange={handleInputChange}
                       required
                       rows={6}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-dwellio-500 focus:border-dwellio-500 transition-all resize-none"
+                      className="w-full px-4 py-3 bg-ubani-black border border-white/10 rounded-xl text-white placeholder-gray-500 focus:ring-2 focus:ring-ubani-yellow focus:border-ubani-yellow transition-all resize-none"
                       placeholder="Please provide detailed information about your inquiry..."
                     ></textarea>
                   </div>
@@ -330,11 +332,11 @@ export default function Contact() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-dwellio-600 text-white py-4 rounded-xl font-semibold hover:bg-dwellio-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center space-x-2"
+                    className="w-full bg-ubani-yellow text-ubani-black py-4 rounded-full font-semibold hover:bg-ubani-yellow/90 disabled:opacity-50 disabled:cursor-not-allowed transition-all transform hover:scale-105 shadow-xl flex items-center justify-center space-x-2"
                   >
                     {isSubmitting ? (
                       <>
-                        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-ubani-black"></div>
                         <span>Sending...</span>
                       </>
                     ) : (
@@ -349,22 +351,22 @@ export default function Contact() {
             </div>
 
             {/* Contact Information */}
-            <div className="space-y-8">
+            <div className="space-y-6">
               {/* Quick Contact Info */}
-              <div className="bg-white rounded-3xl shadow-xl p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Contact Information</h3>
+              <div className="bg-[#1a1a1a] rounded-3xl border border-white/10 p-8">
+                <h3 className="text-2xl font-bold text-white mb-6">Contact Information</h3>
                 <div className="space-y-6">
                   {contactInfo.map((info, index) => (
                     <div key={index} className="flex items-start space-x-4">
-                      <div className="w-12 h-12 bg-dwellio-100 rounded-xl flex items-center justify-center text-dwellio-600 flex-shrink-0">
+                      <div className="w-12 h-12 bg-ubani-yellow/10 rounded-xl flex items-center justify-center text-ubani-yellow flex-shrink-0">
                         {info.icon}
                       </div>
                       <div>
-                        <h4 className="font-semibold text-gray-900 mb-1">{info.title}</h4>
+                        <h4 className="font-semibold text-white mb-1">{info.title}</h4>
                         {info.details.map((detail, detailIndex) => (
-                          <p key={detailIndex} className="text-gray-600">{detail}</p>
+                          <p key={detailIndex} className="text-gray-300 text-sm">{detail}</p>
                         ))}
-                        <p className="text-sm text-gray-500 mt-1">{info.description}</p>
+                        <p className="text-xs text-gray-500 mt-1">{info.description}</p>
                       </div>
                     </div>
                   ))}
@@ -372,114 +374,121 @@ export default function Contact() {
               </div>
 
               {/* Social Media */}
-              <div className="bg-white rounded-3xl shadow-xl p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Follow Us</h3>
-                <div className="grid grid-cols-2 gap-4">
+              <div className="bg-[#1a1a1a] rounded-3xl border border-white/10 p-8">
+                <h3 className="text-2xl font-bold text-white mb-6">Follow Us</h3>
+                <div className="grid grid-cols-2 gap-3">
                   {[
-                    { icon: <FiFacebook className="w-5 h-5" />, name: "Facebook", color: "bg-blue-600" },
-                    { icon: <FiTwitter className="w-5 h-5" />, name: "Twitter", color: "bg-sky-400" },
-                    { icon: <FiInstagram className="w-5 h-5" />, name: "Instagram", color: "bg-pink-600" },
-                    { icon: <FiLinkedin className="w-5 h-5" />, name: "LinkedIn", color: "bg-blue-700" }
+                    { icon: <FiFacebook className="w-5 h-5" />, name: "Facebook" },
+                    { icon: <FiTwitter className="w-5 h-5" />, name: "Twitter" },
+                    { icon: <FiInstagram className="w-5 h-5" />, name: "Instagram" },
+                    { icon: <FiLinkedin className="w-5 h-5" />, name: "LinkedIn" }
                   ].map((social, index) => (
                     <a
                       key={index}
                       href="#"
-                      className={`${social.color} text-white p-4 rounded-xl hover:opacity-90 transition-opacity flex items-center space-x-3`}
+                      className="bg-ubani-yellow/10 text-ubani-yellow border border-ubani-yellow/20 p-4 rounded-xl hover:bg-ubani-yellow hover:text-ubani-black transition-all transform hover:scale-105 flex items-center space-x-2"
                     >
                       {social.icon}
-                      <span className="font-medium">{social.name}</span>
+                      <span className="font-medium text-sm">{social.name}</span>
                     </a>
                   ))}
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </PageContainer>
+      </div>
 
-        {/* Departments */}
-        <div className="bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">Contact by Department</h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Reach out to the right team for faster assistance
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {departments.map((dept, index) => (
-                <div key={index} className="bg-gray-50 p-6 rounded-2xl hover:shadow-lg transition-shadow">
-                  <div className="w-12 h-12 bg-dwellio-100 rounded-xl flex items-center justify-center text-dwellio-600 mb-4">
-                    <FiHome className="w-6 h-6" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">{dept.name}</h3>
-                  <p className="text-gray-600 text-sm mb-4">{dept.description}</p>
-                  <div className="space-y-2">
-                    <div className="flex items-center space-x-2">
-                      <FiMail className="w-4 h-4 text-gray-400" />
-                      <a href={`mailto:${dept.email}`} className="text-sm text-dwellio-600 hover:underline">
-                        {dept.email}
-                      </a>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <FiPhone className="w-4 h-4 text-gray-400" />
-                      <a href={`tel:${dept.phone}`} className="text-sm text-dwellio-600 hover:underline">
-                        {dept.phone}
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* FAQ Section */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Quick answers to common questions
+      {/* Departments */}
+      <div className="py-12 sm:py-16 bg-ubani-black border-t border-white/10">
+        <PageContainer>
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">Contact by Department</h2>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              Reach out to the right team for faster assistance
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            {faqs.map((faq, index) => (
-              <div key={index} className="bg-white p-6 rounded-2xl shadow-sm">
-                <div className="flex items-start space-x-3">
-                  <div className="w-6 h-6 bg-dwellio-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <FiCheck className="w-4 h-4 text-dwellio-600" />
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {departments.map((dept, index) => (
+              <div key={index} className="bg-[#1a1a1a] p-6 rounded-3xl border border-white/10 hover:border-ubani-yellow/30 hover:bg-[#222222] transition-all hover:scale-105 transform">
+                <div className="w-12 h-12 bg-ubani-yellow/10 rounded-xl flex items-center justify-center text-ubani-yellow mb-4">
+                  <FiHome className="w-6 h-6" />
+                </div>
+                <h3 className="text-xl font-semibold text-white mb-3">{dept.name}</h3>
+                <p className="text-gray-400 text-sm mb-4 leading-relaxed">{dept.description}</p>
+                <div className="space-y-2">
+                  <div className="flex items-center space-x-2">
+                    <FiMail className="w-4 h-4 text-ubani-yellow" />
+                    <a href={`mailto:${dept.email}`} className="text-sm text-gray-300 hover:text-ubani-yellow transition-colors">
+                      {dept.email}
+                    </a>
                   </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900 mb-2">{faq.question}</h3>
-                    <p className="text-gray-600 leading-relaxed">{faq.answer}</p>
+                  <div className="flex items-center space-x-2">
+                    <FiPhone className="w-4 h-4 text-ubani-yellow" />
+                    <a href={`tel:${dept.phone}`} className="text-sm text-gray-300 hover:text-ubani-yellow transition-colors">
+                      {dept.phone}
+                    </a>
                   </div>
                 </div>
               </div>
             ))}
           </div>
-        </div>
+        </PageContainer>
+      </div>
 
-        {/* Map Section (Placeholder) */}
-        <div className="bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">Visit Our Office</h2>
-              <p className="text-xl text-gray-600">
-                Schedule an appointment for in-person consultations
-              </p>
-            </div>
+      {/* FAQ Section */}
+      <div className="py-12 sm:py-16 bg-ubani-black border-t border-white/10">
+        <PageContainer>
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">Frequently Asked Questions</h2>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              Quick answers to common questions
+            </p>
+          </div>
 
-            <div className="bg-gray-200 rounded-3xl h-96 flex items-center justify-center">
-              <div className="text-center">
-                <FiMapPin className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-                <p className="text-gray-600 text-lg">Interactive Map Coming Soon</p>
-                <p className="text-gray-500">123 Victoria Island, Lagos, Nigeria</p>
+          <div className="grid md:grid-cols-2 gap-6">
+            {faqs.map((faq, index) => (
+              <div key={index} className="bg-[#1a1a1a] p-6 sm:p-8 rounded-3xl border border-white/10 hover:border-ubani-yellow/30 transition-all">
+                <div className="flex items-start space-x-4">
+                  <div className="w-8 h-8 bg-ubani-yellow/10 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <FiCheck className="w-5 h-5 text-ubani-yellow" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-white mb-3 text-lg">{faq.question}</h3>
+                    <p className="text-gray-400 leading-relaxed">{faq.answer}</p>
+                  </div>
+                </div>
               </div>
+            ))}
+          </div>
+        </PageContainer>
+      </div>
+
+      {/* Map Section (Placeholder) */}
+      <div className="py-12 sm:py-16 bg-ubani-black border-t border-white/10">
+        <PageContainer>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">Visit Our Office</h2>
+            <p className="text-xl text-gray-300">
+              Schedule an appointment for in-person consultations
+            </p>
+          </div>
+
+          <div className="bg-[#1a1a1a] border border-white/10 rounded-3xl h-96 flex items-center justify-center">
+            <div className="text-center">
+              <div className="w-20 h-20 rounded-2xl bg-ubani-yellow/10 flex items-center justify-center mx-auto mb-6">
+                <FiMapPin className="w-10 h-10 text-ubani-yellow" />
+              </div>
+              <p className="text-gray-300 text-lg font-medium mb-2">Interactive Map Coming Soon</p>
+              <p className="text-gray-400">123 Victoria Island, Lagos, Nigeria</p>
             </div>
           </div>
-        </div>
+        </PageContainer>
       </div>
-    </>
+
+      {/* Footer */}
+      <Footer />
+    </div>
   );
 }

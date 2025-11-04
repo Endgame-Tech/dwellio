@@ -1,4 +1,4 @@
-// API service for Dwellio tenant application
+// API service for Ubani tenant application
 import type { 
   User, 
   Property, 

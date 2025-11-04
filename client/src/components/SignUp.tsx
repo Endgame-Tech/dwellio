@@ -84,22 +84,22 @@ export default function SignUp() {
   };
 
   return (
-    <div className="dwellio-dashboard-bg min-h-screen flex">
+    <div className="ubani-dashboard-bg min-h-screen flex">
       {/* Left side - Image and testimonial */}
       <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-dwellio-800/90 to-dwellio-950/90 z-10"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-ubani-800/90 to-ubani-950/90 z-10"></div>
         <img
           src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=773&q=80"
           alt="Beautiful property"
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="relative z-20 flex flex-col justify-between h-full p-8">
-          <div className="dwellio-modern-card p-6">
-            <h1 className="text-3xl font-bold mb-2 dwellio-text-gradient">Dwellio</h1>
+          <div className="ubani-modern-card p-6">
+            <h1 className="text-3xl font-bold mb-2 ubani-text-gradient">Ubani</h1>
             <p className="text-gray-600 dark:text-gray-300">Your simple path to property management</p>
           </div>
 
-          <div className="dwellio-modern-card p-6">
+          <div className="ubani-modern-card p-6">
             <div className="relative w-full max-w-md mx-auto mb-6">
               <img
                 src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070"
@@ -109,13 +109,13 @@ export default function SignUp() {
             </div>
 
             <blockquote className="italic mb-4 text-gray-700 dark:text-gray-300">
-              "Dwellio has completely transformed how I manage my properties. The platform is intuitive and has saved me countless hours of work."
+              "Ubani has completely transformed how I manage my properties. The platform is intuitive and has saved me countless hours of work."
             </blockquote>
             <div className="flex items-center">
               <img
                 src="https://randomuser.me/api/portraits/women/45.jpg"
                 alt="Testimonial author"
-                className="w-10 h-10 rounded-full mr-3 border-2 border-dwellio-400"
+                className="w-10 h-10 rounded-full mr-3 border-2 border-ubani-400"
               />
               <div>
                 <p className="font-semibold text-gray-900 dark:text-white">Sarah Johnson</p>
@@ -148,13 +148,13 @@ export default function SignUp() {
           {/* Logo for mobile view */}
           <div className="text-center mb-8 lg:hidden">
             <Link to="/" className="inline-block">
-              <span className="text-3xl font-bold font-display dwellio-text-gradient">dwellio</span>
+              <span className="text-3xl font-bold font-display ubani-text-gradient">ubani</span>
             </Link>
           </div>
 
-          <div className="dwellio-modern-card p-8">
+          <div className="ubani-modern-card p-8">
             <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold mb-2 dwellio-text-gradient">Create Your Account</h2>
+              <h2 className="text-3xl font-bold mb-2 ubani-text-gradient">Create Your Account</h2>
               <p className="text-gray-600 dark:text-gray-400">Join thousands of users managing their properties with ease</p>
             </div>
 
@@ -168,20 +168,20 @@ export default function SignUp() {
               {/* Profile Image Upload */}
               <div className="flex justify-center mb-6">
                 <div className="relative">
-                  <div className="w-24 h-24 rounded-full overflow-hidden bg-gradient-to-br from-dwellio-400 to-dwellio-600 flex items-center justify-center border-4 border-white shadow-lg">
+                  <div className="w-24 h-24 rounded-full overflow-hidden bg-gradient-to-br from-ubani-400 to-ubani-600 flex items-center justify-center border-4 border-white shadow-lg">
                     {profileImagePreview ? (
-                      <img 
-                        src={profileImagePreview} 
-                        alt="Profile preview" 
+                      <img
+                        src={profileImagePreview}
+                        alt="Profile preview"
                         className="w-full h-full object-cover"
                       />
                     ) : (
                       <FaUser className="w-8 h-8 text-white" />
                     )}
                   </div>
-                  <label 
+                  <label
                     htmlFor="profile-image-upload"
-                    className="absolute bottom-0 right-0 w-8 h-8 bg-dwellio-600 hover:bg-dwellio-700 rounded-full flex items-center justify-center cursor-pointer transition-colors shadow-lg border-2 border-white"
+                    className="absolute bottom-0 right-0 w-8 h-8 bg-ubani-600 hover:bg-ubani-700 rounded-full flex items-center justify-center cursor-pointer transition-colors shadow-lg border-2 border-white"
                   >
                     <FaCamera className="w-3 h-3 text-white" />
                   </label>
@@ -213,7 +213,7 @@ export default function SignUp() {
                     placeholder="Enter your first name"
                     value={form.firstName}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 bg-white/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-600 rounded-lg backdrop-blur-sm focus:ring-2 focus:ring-dwellio-500 focus:border-dwellio-500 transition-all duration-300 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
+                    className="w-full px-4 py-3 bg-white/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-600 rounded-lg backdrop-blur-sm focus:ring-2 focus:ring-ubani-500 focus:border-ubani-500 transition-all duration-300 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
                     required
                   />
                 </div>
@@ -227,7 +227,7 @@ export default function SignUp() {
                     placeholder="Enter your last name"
                     value={form.lastName}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 bg-white/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-600 rounded-lg backdrop-blur-sm focus:ring-2 focus:ring-dwellio-500 focus:border-dwellio-500 transition-all duration-300 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
+                    className="w-full px-4 py-3 bg-white/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-600 rounded-lg backdrop-blur-sm focus:ring-2 focus:ring-ubani-500 focus:border-ubani-500 transition-all duration-300 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
                     required
                   />
                 </div>
@@ -242,7 +242,7 @@ export default function SignUp() {
                   placeholder="you@example.com"
                   value={form.email}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 bg-white/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-600 rounded-lg backdrop-blur-sm focus:ring-2 focus:ring-dwellio-500 focus:border-dwellio-500 transition-all duration-300 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
+                  className="w-full px-4 py-3 bg-white/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-600 rounded-lg backdrop-blur-sm focus:ring-2 focus:ring-ubani-500 focus:border-ubani-500 transition-all duration-300 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
                   required
                 />
               </div>
@@ -256,7 +256,7 @@ export default function SignUp() {
                   placeholder="Enter your phone number"
                   value={form.phoneNumber}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 bg-white/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-600 rounded-lg backdrop-blur-sm focus:ring-2 focus:ring-dwellio-500 focus:border-dwellio-500 transition-all duration-300 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
+                  className="w-full px-4 py-3 bg-white/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-600 rounded-lg backdrop-blur-sm focus:ring-2 focus:ring-ubani-500 focus:border-ubani-500 transition-all duration-300 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
                   required
                 />
               </div>
@@ -271,13 +271,13 @@ export default function SignUp() {
                     placeholder="Create a strong password"
                     value={form.password}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 pr-12 bg-white/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-600 rounded-lg backdrop-blur-sm focus:ring-2 focus:ring-dwellio-500 focus:border-dwellio-500 transition-all duration-300 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
+                    className="w-full px-4 py-3 pr-12 bg-white/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-600 rounded-lg backdrop-blur-sm focus:ring-2 focus:ring-ubani-500 focus:border-ubani-500 transition-all duration-300 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
                     required
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 dark:text-gray-400 hover:text-dwellio-600 dark:hover:text-dwellio-400 transition-colors"
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 dark:text-gray-400 hover:text-ubani-600 dark:hover:text-ubani-400 transition-colors"
                   >
                     {showPassword ? <FaEyeSlash className="w-5 h-5" /> : <FaEye className="w-5 h-5" />}
                   </button>
@@ -291,7 +291,7 @@ export default function SignUp() {
                   name="role"
                   value={form.role}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 bg-white/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-600 rounded-lg backdrop-blur-sm focus:ring-2 focus:ring-dwellio-500 focus:border-dwellio-500 transition-all duration-300 text-gray-900 dark:text-white"
+                  className="w-full px-4 py-3 bg-white/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-600 rounded-lg backdrop-blur-sm focus:ring-2 focus:ring-ubani-500 focus:border-ubani-500 transition-all duration-300 text-gray-900 dark:text-white"
                 >
                   <option value="tenant">Tenant</option>
                   <option value="landlord">Landlord</option>
@@ -301,7 +301,7 @@ export default function SignUp() {
 
               <button
                 type="submit"
-                className="w-full dwellio-button-gradient py-3 rounded-lg font-semibold transition-all duration-300 disabled:opacity-50 flex items-center justify-center mt-6"
+                className="w-full ubani-button-gradient py-3 rounded-lg font-semibold transition-all duration-300 disabled:opacity-50 flex items-center justify-center mt-6"
                 disabled={loading}
               >
                 {loading ? (
@@ -318,7 +318,7 @@ export default function SignUp() {
 
             <div className="mt-6 text-center">
               <span className="text-gray-600 dark:text-gray-400">Already have an account? </span>
-              <Link to="/signin" className="dwellio-text-gradient font-medium hover:underline transition-all duration-300">Sign In</Link>
+              <Link to="/signin" className="ubani-text-gradient font-medium hover:underline transition-all duration-300">Sign In</Link>
             </div>
           </div>
         </div>

@@ -19,7 +19,7 @@ interface ThemeProviderProps {
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
     const [theme, setTheme] = useState<Theme>(() => {
         // Check if there's a saved theme preference
-        const savedTheme = localStorage.getItem('dwellio-theme') as Theme;
+        const savedTheme = localStorage.getItem('ubani-theme') as Theme;
         if (savedTheme) {
             return savedTheme;
         }
@@ -42,7 +42,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
         root.classList.add(theme);
 
         // Save to localStorage
-        localStorage.setItem('dwellio-theme', theme);
+        localStorage.setItem('ubani-theme', theme);
     }, [theme]);
 
     // Listen for system theme changes
@@ -51,7 +51,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
 
         const handleChange = (e: MediaQueryListEvent) => {
             // Only update if no manual preference is saved
-            const savedTheme = localStorage.getItem('dwellio-theme');
+            const savedTheme = localStorage.getItem('ubani-theme');
             if (!savedTheme) {
                 setTheme(e.matches ? 'dark' : 'light');
             }

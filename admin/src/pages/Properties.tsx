@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { adminApi } from '../services/api';
 import { Property, PropertyFilters, PropertyImage } from '../types';
+import PropertyCard from '../components/PropertyCard';
 import {
   FiMapPin,
   FiPlus,
@@ -16,11 +17,7 @@ import {
   FiMoreHorizontal,
   FiGrid,
   FiList,
-  FiHome,
-  FiDroplet,
-  FiSquare,
-  FiDollarSign,
-  FiArrowRight
+  FiHome
 } from 'react-icons/fi';
 import { toast } from 'react-toastify';
 
@@ -164,108 +161,6 @@ export default function Properties() {
     return `N${amount}`;
   };
 
-  // Property Card Component - compact mobile-first design matching cardme.png
-  const PropertyCard = ({ property }: { property: Property }) => {
-    const imageUrl = (() => {
-      if (property.images && property.images.length > 0) {
-        return Array.isArray(property.images) && typeof property.images[0] === 'string'
-          ? property.images[0]
-          : (property.images[0] as PropertyImage)?.url;
-      }
-      return 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1000&q=80';
-    })();
-
-    return (
-      <div className="group relative bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-gray-100 w-full max-w-[280px] mx-auto overflow-hidden">
-        {/* Image */}
-        <div className="relative w-full h-[160px] overflow-hidden">
-          <img src={imageUrl} alt={property.title || 'Property'} className="w-full h-full object-cover" />
-
-          {/* Approve/Reject buttons (hover) */}
-          <div className="absolute top-3 right-3 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-            <button
-              onClick={(e) => { e.stopPropagation(); handleApproveProperty(property._id); }}
-              className="p-1 bg-white/90 rounded-full text-green-600 hover:text-green-800 hover:bg-green-50 shadow-sm"
-              title="Approve"
-            >
-              <FiCheck className="w-3 h-3" />
-            </button>
-            <button
-              onClick={(e) => { e.stopPropagation(); handleRejectProperty(property._id); }}
-              className="p-1 bg-white/90 rounded-full text-red-600 hover:text-red-800 hover:bg-red-50 shadow-sm"
-              title="Reject"
-            >
-              <FiX className="w-3 h-3" />
-            </button>
-          </div>
-
-          {/* Green arrow button */}
-          <Link
-            to={`/admin/properties/${property._id}`}
-            className="absolute top-3 right-3 w-8 h-8 rounded-full bg-lime-400 flex items-center justify-center text-gray-900 hover:bg-lime-500 transition-colors opacity-100"
-            title="View Details"
-          >
-            <FiArrowRight className="w-4 h-4" />
-          </Link>
-        </div>
-
-        {/* Content */}
-        <div className="p-4">
-          {/* Title and Price */}
-          <div className="mb-3">
-            <p className="text-sm font-medium text-gray-700 mb-1">
-              {(property.type?.charAt(0).toUpperCase() + property.type?.slice(1)) || 'Flat'} - Estate
-            </p>
-            <p className="text-2xl font-bold text-gray-900 mb-1">
-              {formatShortCurrency(property.rent?.amount || 750000)}
-            </p>
-            <p className="text-sm text-gray-500">
-              {property.location?.city || 'Abuja'}, {property.location?.state || 'FCT'}
-            </p>
-          </div>
-
-          {/* Features - Compact vertical list */}
-          <div className="space-y-2 mb-4">
-            <div className="flex items-center gap-2 text-xs text-gray-600">
-              <FiHome className="w-3 h-3" />
-              <span>{property.bedrooms || 'N/A'} Bedrooms</span>
-            </div>
-            <div className="flex items-center gap-2 text-xs text-gray-600">
-              <FiDroplet className="w-3 h-3" />
-              <span>{property.bathrooms || 'N/A'} Bathrooms</span>
-            </div>
-            <div className="flex items-center gap-2 text-xs text-gray-600">
-              <FiSquare className="w-3 h-3" />
-              <span>{property.area || 'N/A'} m²</span>
-            </div>
-            <div className="flex items-center gap-2 text-xs text-gray-600">
-              <FiMapPin className="w-3 h-3" />
-              <span>Shortlet</span>
-            </div>
-            <div className="flex items-center gap-2 text-xs text-gray-600">
-              <FiDollarSign className="w-3 h-3" />
-              <span>Fully Furnished</span>
-            </div>
-          </div>
-
-          {/* Divider */}
-          <div className="h-px bg-gray-200 mb-4" />
-
-          {/* Bottom expiry section */}
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center">
-              <span className="text-white text-xs font-medium">A</span>
-            </div>
-            <div className="text-xs">
-              <p className="text-gray-500 leading-tight">Expires in</p>
-              <p className="font-medium text-gray-900 leading-tight">3 Months</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  };
-
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -297,8 +192,8 @@ export default function Properties() {
             <button
               onClick={() => setViewMode('cards')}
               className={`p-2 rounded-md transition-colors flex items-center ${viewMode === 'cards'
-                  ? 'bg-white text-blue-600 shadow-sm'
-                  : 'text-gray-600 hover:text-gray-800'
+                ? 'bg-white text-blue-600 shadow-sm'
+                : 'text-gray-600 hover:text-gray-800'
                 }`}
               title="Card View"
             >
@@ -307,8 +202,8 @@ export default function Properties() {
             <button
               onClick={() => setViewMode('table')}
               className={`p-2 rounded-md transition-colors flex items-center ${viewMode === 'table'
-                  ? 'bg-white text-blue-600 shadow-sm'
-                  : 'text-gray-600 hover:text-gray-800'
+                ? 'bg-white text-blue-600 shadow-sm'
+                : 'text-gray-600 hover:text-gray-800'
                 }`}
               title="Table View"
             >
@@ -441,7 +336,7 @@ export default function Properties() {
                 </button>
               </div>
             </div>
-            
+
             {/* Sort Options */}
             <div className="flex items-center gap-2">
               <span className="text-sm text-gray-600">Sort by:</span>
@@ -468,9 +363,14 @@ export default function Properties() {
               <p className="text-gray-400 text-sm mt-2">Try adjusting your search filters or add new properties</p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {properties.map((property) => (
-                <PropertyCard key={property._id} property={property} />
+                <PropertyCard
+                  key={property._id}
+                  property={property}
+                  onApprove={handleApproveProperty}
+                  onReject={handleRejectProperty}
+                />
               ))}
             </div>
           )}

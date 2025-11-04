@@ -1,4 +1,4 @@
-// dwellio/controllers/tenantController.js
+// ubani/controllers/tenantController.js
 import User from "../models/User.js";
 import Application from "../models/Application.js";
 import multer from "multer";
@@ -317,7 +317,7 @@ export const uploadHouseImage = async (req, res) => {
     // Upload to Cloudinary
     const { uploadImage } = require("../config/cloudinary");
     const result = await uploadImage(req.file.buffer, {
-      folder: `dwellio/house-images/${userId}`,
+      folder: `ubani/house-images/${userId}`,
       public_id: `${category}_${Date.now()}`,
     });
 
@@ -425,7 +425,7 @@ export const uploadProfilePhoto = async (req, res) => {
     // Upload to Cloudinary (reuse existing helper)
     const { uploadImage } = require("../config/cloudinary");
     const result = await uploadImage(req.file.buffer, {
-      folder: `dwellio/profile-photos/${userId}`,
+      folder: `ubani/profile-photos/${userId}`,
       public_id: `profile_${Date.now()}`,
     });
 
@@ -446,13 +446,11 @@ export const uploadProfilePhoto = async (req, res) => {
     });
   } catch (error) {
     console.error("Upload profile photo error:", error);
-    res
-      .status(500)
-      .json({
-        success: false,
-        message: "Failed to upload profile photo",
-        error: error.message,
-      });
+    res.status(500).json({
+      success: false,
+      message: "Failed to upload profile photo",
+      error: error.message,
+    });
   }
 };
 
@@ -644,7 +642,7 @@ export const requestMoveOutFacilitation = async (req, res) => {
         savings,
         currency: "NGN",
         description:
-          "Dwellio facilitation fee - 5% instead of typical 10% agent fee",
+          "Ubani facilitation fee - 5% instead of typical 10% agent fee",
         services: [
           "Property matching based on your preferences",
           "Negotiation with landlords on your behalf",

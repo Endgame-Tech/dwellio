@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import Navbar from '../components/Navbar';
-import { 
-  FiHome, 
-  FiSearch, 
-  FiUsers, 
-  FiTool, 
-  FiDollarSign, 
+import {
+  FiHome,
+  FiSearch,
+  FiUsers,
+  FiTool,
+  FiDollarSign,
   FiShield,
   FiClock,
   FiPhone,
@@ -167,14 +167,14 @@ export default function Services() {
       name: "Bola Adeyemi",
       role: "Property Owner",
       image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
-      quote: "Dwellio has transformed how I manage my properties. Their technology platform makes everything so much easier.",
+      quote: "Ubani has transformed how I manage my properties. Their technology platform makes everything so much easier.",
       rating: 5
     },
     {
       name: "Sarah Johnson",
       role: "Tenant",
       image: "https://images.unsplash.com/photo-1494790108755-2616b612b5e5?w=400&h=400&fit=crop&crop=face",
-      quote: "Finding my perfect apartment through Dwellio was seamless. Their team handled everything professionally.",
+      quote: "Finding my perfect apartment through Ubani was seamless. Their team handled everything professionally.",
       rating: 5
     },
     {
@@ -191,14 +191,14 @@ export default function Services() {
       <Navbar />
       <div className="min-h-screen bg-gray-50">
         {/* Hero Section */}
-        <div className="relative bg-gradient-to-br from-dwellio-600 to-dwellio-800 text-white">
+        <div className="relative bg-gradient-to-br from-ubani-600 to-ubani-800 text-white">
           <div className="absolute inset-0 bg-black/20"></div>
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
             <div className="text-center">
               <h1 className="text-4xl md:text-6xl font-bold mb-6">
                 Our <span className="text-yellow-400">Services</span>
               </h1>
-              <p className="text-xl md:text-2xl text-dwellio-100 max-w-3xl mx-auto leading-relaxed">
+              <p className="text-xl md:text-2xl text-ubani-100 max-w-3xl mx-auto leading-relaxed">
                 Comprehensive property management solutions designed to make your life easier
               </p>
             </div>
@@ -220,11 +220,10 @@ export default function Services() {
               <button
                 key={index}
                 onClick={() => setSelectedService(index)}
-                className={`flex items-center space-x-2 px-6 py-3 rounded-full font-medium transition-all duration-300 ${
-                  selectedService === index
-                    ? 'bg-dwellio-600 text-white shadow-lg'
-                    : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'
-                }`}
+                className={`flex items-center space-x-2 px-6 py-3 rounded-full font-medium transition-all duration-300 ${selectedService === index
+                  ? 'bg-ubani-600 text-white shadow-lg'
+                  : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'
+                  }`}
               >
                 <span className="text-sm">{service.icon}</span>
                 <span>{service.title}</span>
@@ -237,15 +236,15 @@ export default function Services() {
             <div className="grid lg:grid-cols-2 gap-0">
               <div className="p-8 lg:p-12">
                 <div className="flex items-center space-x-4 mb-6">
-                  <div className="w-16 h-16 bg-dwellio-100 rounded-xl flex items-center justify-center text-dwellio-600">
+                  <div className="w-16 h-16 bg-ubani-100 rounded-xl flex items-center justify-center text-ubani-600">
                     {mainServices[selectedService].icon}
                   </div>
                   <div>
                     <h3 className="text-2xl font-bold text-gray-900">{mainServices[selectedService].title}</h3>
-                    <p className="text-dwellio-600 font-medium">{mainServices[selectedService].pricing}</p>
+                    <p className="text-ubani-600 font-medium">{mainServices[selectedService].pricing}</p>
                   </div>
                 </div>
-                
+
                 <p className="text-gray-600 text-lg mb-8 leading-relaxed">
                   {mainServices[selectedService].description}
                 </p>
@@ -260,19 +259,19 @@ export default function Services() {
                   ))}
                 </div>
 
-                <button className="bg-dwellio-600 text-white px-8 py-4 rounded-full font-semibold hover:bg-dwellio-700 transition-colors inline-flex items-center space-x-2">
+                <button className="bg-ubani-600 text-white px-8 py-4 rounded-full font-semibold hover:bg-ubani-700 transition-colors inline-flex items-center space-x-2">
                   <span>Get Started</span>
                   <FiArrowRight className="w-5 h-5" />
                 </button>
               </div>
-              
+
               <div className="relative">
                 <img
                   src={mainServices[selectedService].image}
                   alt={mainServices[selectedService].title}
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-br from-dwellio-600/20 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-ubani-600/20 to-transparent"></div>
               </div>
             </div>
           </div>
@@ -291,7 +290,7 @@ export default function Services() {
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               {additionalServices.map((service, index) => (
                 <div key={index} className="bg-gray-50 p-8 rounded-2xl hover:shadow-lg transition-shadow">
-                  <div className="w-16 h-16 bg-dwellio-100 rounded-xl flex items-center justify-center text-dwellio-600 mb-6">
+                  <div className="w-16 h-16 bg-ubani-100 rounded-xl flex items-center justify-center text-ubani-600 mb-6">
                     {service.icon}
                   </div>
                   <h3 className="text-xl font-semibold text-gray-900 mb-3">{service.title}</h3>
@@ -321,15 +320,15 @@ export default function Services() {
 
           <div className="grid md:grid-cols-3 gap-8">
             {pricingPlans.map((plan, index) => (
-              <div key={index} className={`relative bg-white rounded-3xl shadow-lg hover:shadow-xl transition-shadow p-8 ${plan.popular ? 'ring-2 ring-dwellio-600 scale-105' : ''}`}>
+              <div key={index} className={`relative bg-white rounded-3xl shadow-lg hover:shadow-xl transition-shadow p-8 ${plan.popular ? 'ring-2 ring-ubani-600 scale-105' : ''}`}>
                 {plan.popular && (
                   <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <span className="bg-dwellio-600 text-white px-6 py-2 rounded-full text-sm font-semibold">
+                    <span className="bg-ubani-600 text-white px-6 py-2 rounded-full text-sm font-semibold">
                       Most Popular
                     </span>
                   </div>
                 )}
-                
+
                 <div className="text-center mb-8">
                   <h3 className="text-2xl font-bold text-gray-900 mb-2">{plan.name}</h3>
                   <div className="mb-4">
@@ -348,11 +347,10 @@ export default function Services() {
                   ))}
                 </div>
 
-                <button className={`w-full py-4 rounded-full font-semibold transition-colors ${
-                  plan.popular
-                    ? 'bg-dwellio-600 text-white hover:bg-dwellio-700'
-                    : 'bg-gray-100 text-gray-900 hover:bg-gray-200'
-                }`}>
+                <button className={`w-full py-4 rounded-full font-semibold transition-colors ${plan.popular
+                  ? 'bg-ubani-600 text-white hover:bg-ubani-700'
+                  : 'bg-gray-100 text-gray-900 hover:bg-gray-200'
+                  }`}>
                   {plan.name === 'Enterprise' ? 'Contact Sales' : 'Get Started'}
                 </button>
               </div>
@@ -399,23 +397,23 @@ export default function Services() {
         </div>
 
         {/* CTA Section */}
-        <div className="bg-dwellio-600 text-white">
+        <div className="bg-ubani-600 text-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
             <div className="text-center">
               <h2 className="text-3xl font-bold mb-6">Ready to Get Started?</h2>
-              <p className="text-xl text-dwellio-100 mb-8 max-w-2xl mx-auto">
-                Join thousands of property owners and tenants who trust Dwellio for their property management needs.
+              <p className="text-xl text-ubani-100 mb-8 max-w-2xl mx-auto">
+                Join thousands of property owners and tenants who trust Ubani for their property management needs.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
                   href="/contact"
-                  className="bg-white text-dwellio-600 px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition-colors"
+                  className="bg-white text-ubani-600 px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition-colors"
                 >
                   Contact Sales
                 </a>
                 <a
                   href="/signup"
-                  className="border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-dwellio-600 transition-colors"
+                  className="border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-ubani-600 transition-colors"
                 >
                   Start Free Trial
                 </a>

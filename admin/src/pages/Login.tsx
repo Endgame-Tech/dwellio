@@ -33,14 +33,14 @@ export default function Login() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!formData.email || !formData.password) {
       toast.error('Please fill in all fields');
       return;
     }
 
     setSubmitting(true);
-    
+
     try {
       await login(formData.email, formData.password);
       toast.success('Login successful');
@@ -73,7 +73,7 @@ export default function Login() {
             <FiShield className="w-8 h-8 text-blue-600" />
           </div>
           <h2 className="text-3xl font-bold text-white mb-2">
-            Dwellio Admin
+            Ubani Admin
           </h2>
           <p className="text-blue-100">
             Sign in to your admin dashboard
@@ -151,11 +151,10 @@ export default function Login() {
               <button
                 type="submit"
                 disabled={submitting}
-                className={`w-full flex justify-center items-center px-4 py-3 border border-transparent rounded-lg text-sm font-medium text-white transition-colors duration-200 ${
-                  submitting
+                className={`w-full flex justify-center items-center px-4 py-3 border border-transparent rounded-lg text-sm font-medium text-white transition-colors duration-200 ${submitting
                     ? 'bg-gray-400 cursor-not-allowed'
                     : 'bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500'
-                }`}
+                  }`}
               >
                 {submitting ? (
                   <>

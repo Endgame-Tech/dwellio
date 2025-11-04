@@ -307,7 +307,7 @@ export default function TenantProfile() {
   const getStatusIcon = (status: string) => {
     switch (status) {
       case 'verified':
-        return <FaCheck className="text-dwellio-600" />;
+        return <FaCheck className="text-ubani-600" />;
       case 'pending':
         return <FaExclamationTriangle className="text-yellow-600" />;
       case 'rejected':
@@ -385,7 +385,7 @@ export default function TenantProfile() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-dwellio-600 mx-auto mb-4"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-ubani-600 mx-auto mb-4"></div>
           <p className="text-gray-600">Loading your profile...</p>
         </div>
       </div>
@@ -398,11 +398,11 @@ export default function TenantProfile() {
       <div className="mb-8">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center space-x-4">
-            <div className="w-12 h-12 bg-dwellio-primary rounded-xl flex items-center justify-center">
-              <FaUser className="w-6 h-6 text-dwellio-dark" />
+            <div className="w-12 h-12 bg-ubani-primary rounded-xl flex items-center justify-center">
+              <FaUser className="w-6 h-6 text-ubani-dark" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold text-dwellio-dark">
+              <h1 className="text-3xl font-bold text-ubani-dark">
                 My Profile
               </h1>
               <p className="text-gray-600 mt-1">
@@ -417,7 +417,7 @@ export default function TenantProfile() {
               onClick={() => setIsEditingPersonal(!isEditingPersonal)}
               className={`px-4 py-2 rounded-lg font-medium transition-colors inline-flex items-center space-x-2 ${isEditingPersonal
                 ? 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                : 'bg-dwellio-primary text-dwellio-dark hover:bg-dwellio-primary-dark'
+                : 'bg-ubani-primary text-ubani-dark hover:bg-ubani-primary-dark'
                 }`}
             >
               {isEditingPersonal ? (
@@ -439,7 +439,7 @@ export default function TenantProfile() {
               onClick={() => setIsEditingResidence(!isEditingResidence)}
               className={`px-4 py-2 rounded-lg font-medium transition-colors inline-flex items-center space-x-2 ${isEditingResidence
                 ? 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                : 'bg-dwellio-primary text-dwellio-dark hover:bg-dwellio-primary-dark'
+                : 'bg-ubani-primary text-ubani-dark hover:bg-ubani-primary-dark'
                 }`}
             >
               {isEditingResidence ? (
@@ -464,7 +464,7 @@ export default function TenantProfile() {
           {/* Profile Avatar and Info */}
           <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-6 sm:space-y-0 sm:space-x-8">
             <div className="relative">
-              <div className="w-24 h-24 lg:w-32 lg:h-32 bg-dwellio-primary rounded-2xl flex items-center justify-center overflow-hidden">
+              <div className="w-24 h-24 lg:w-32 lg:h-32 bg-ubani-primary rounded-2xl flex items-center justify-center overflow-hidden">
                 {profilePhotoPreview || user?.profilePhoto ? (
                   <img
                     src={profilePhotoPreview || user?.profilePhoto || ''}
@@ -472,7 +472,7 @@ export default function TenantProfile() {
                     className="w-full h-full object-cover"
                   />
                 ) : (
-                  <span className="text-2xl lg:text-4xl font-bold text-dwellio-dark">
+                  <span className="text-2xl lg:text-4xl font-bold text-ubani-dark">
                     {user?.firstName?.charAt(0)}{user?.lastName?.charAt(0)}
                   </span>
                 )}
@@ -494,7 +494,7 @@ export default function TenantProfile() {
               {/* Camera button */}
               <label
                 htmlFor="profile-image-upload"
-                className="absolute -bottom-2 -left-2 w-8 h-8 lg:w-10 lg:h-10 bg-dwellio-600 hover:bg-dwellio-700 rounded-xl flex items-center justify-center border-2 border-white cursor-pointer transition-colors"
+                className="absolute -bottom-2 -left-2 w-8 h-8 lg:w-10 lg:h-10 bg-ubani-600 hover:bg-ubani-700 rounded-xl flex items-center justify-center border-2 border-white cursor-pointer transition-colors"
               >
                 {uploadingImage ? (
                   <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent"></div>
@@ -520,7 +520,7 @@ export default function TenantProfile() {
 
             <div className="flex-1 min-w-0">
               <div className="mb-4">
-                <h2 className="text-2xl lg:text-3xl font-bold text-dwellio-dark mb-2">
+                <h2 className="text-2xl lg:text-3xl font-bold text-ubani-dark mb-2">
                   {user?.firstName} {user?.lastName}
                 </h2>
                 <div className="flex items-center space-x-2 text-emerald-600 mb-3">
@@ -538,7 +538,7 @@ export default function TenantProfile() {
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-medium text-gray-700">Email Address</p>
-                    <p className="text-dwellio-dark font-semibold truncate">{user?.email}</p>
+                    <p className="text-ubani-dark font-semibold truncate">{user?.email}</p>
                   </div>
                 </div>
 
@@ -548,7 +548,7 @@ export default function TenantProfile() {
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-medium text-gray-700">Phone Number</p>
-                    <p className="text-dwellio-dark font-semibold truncate">
+                    <p className="text-ubani-dark font-semibold truncate">
                       {user?.phoneNumber || 'Not provided'}
                     </p>
                   </div>
@@ -561,7 +561,7 @@ export default function TenantProfile() {
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className="text-sm font-medium text-gray-700">Occupation</p>
-                      <p className="text-dwellio-dark font-semibold truncate">
+                      <p className="text-ubani-dark font-semibold truncate">
                         {user.tenantProfile.occupation}
                       </p>
                     </div>
@@ -587,7 +587,7 @@ export default function TenantProfile() {
                       strokeWidth="3"
                     />
                     <path
-                      className="text-dwellio-primary"
+                      className="text-ubani-primary"
                       d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
                       fill="none"
                       stroke="currentColor"
@@ -596,7 +596,7 @@ export default function TenantProfile() {
                     />
                   </svg>
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-xl font-bold text-dwellio-dark">{profileCompletion}%</span>
+                    <span className="text-xl font-bold text-ubani-dark">{profileCompletion}%</span>
                   </div>
                 </div>
               </div>
@@ -613,14 +613,14 @@ export default function TenantProfile() {
                 <div className="w-8 h-8 bg-blue-50 rounded-lg mx-auto mb-2 flex items-center justify-center">
                   <FaFileAlt className="w-4 h-4 text-blue-600" />
                 </div>
-                <div className="text-lg font-bold text-dwellio-dark">{documents.length}</div>
+                <div className="text-lg font-bold text-ubani-dark">{documents.length}</div>
                 <div className="text-xs text-gray-600">Documents</div>
               </div>
               <div className="bg-white rounded-lg border border-gray-200 p-4 text-center">
                 <div className="w-8 h-8 bg-emerald-50 rounded-lg mx-auto mb-2 flex items-center justify-center">
                   <FaCheck className="w-4 h-4 text-emerald-600" />
                 </div>
-                <div className="text-lg font-bold text-dwellio-dark">
+                <div className="text-lg font-bold text-ubani-dark">
                   {documents.filter(doc => doc.verified || doc.status === 'verified').length}
                 </div>
                 <div className="text-xs text-gray-600">Verified</div>
@@ -663,7 +663,7 @@ export default function TenantProfile() {
               key={tab.key}
               onClick={() => setActiveTab(tab.key as 'personal' | 'documents' | 'residence')}
               className={`px-4 py-2 rounded-lg font-medium text-sm transition-all duration-200 inline-flex items-center space-x-2 ${activeTab === tab.key
-                ? 'bg-dwellio-primary text-dwellio-dark'
+                ? 'bg-ubani-primary text-ubani-dark'
                 : 'bg-gray-50 hover:bg-gray-100 text-gray-700 border border-gray-200'
                 }`}
             >
@@ -798,7 +798,7 @@ export default function TenantProfile() {
                         type="text"
                         value={personalInfo.firstName}
                         onChange={(e) => setPersonalInfo(prev => ({ ...prev, firstName: e.target.value }))}
-                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-dwellio-primary focus:border-dwellio-primary transition-colors"
+                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ubani-primary focus:border-ubani-primary transition-colors"
                         placeholder="Enter your first name"
                         required
                       />
@@ -812,7 +812,7 @@ export default function TenantProfile() {
                         type="text"
                         value={personalInfo.lastName}
                         onChange={(e) => setPersonalInfo(prev => ({ ...prev, lastName: e.target.value }))}
-                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-dwellio-primary focus:border-dwellio-primary transition-colors"
+                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ubani-primary focus:border-ubani-primary transition-colors"
                         placeholder="Enter your last name"
                         required
                       />
@@ -826,7 +826,7 @@ export default function TenantProfile() {
                         type="email"
                         value={personalInfo.email}
                         onChange={(e) => setPersonalInfo(prev => ({ ...prev, email: e.target.value }))}
-                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-dwellio-primary focus:border-dwellio-primary transition-colors"
+                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ubani-primary focus:border-ubani-primary transition-colors"
                         placeholder="Enter your email address"
                         required
                       />
@@ -840,7 +840,7 @@ export default function TenantProfile() {
                         type="tel"
                         value={personalInfo.phoneNumber}
                         onChange={(e) => setPersonalInfo(prev => ({ ...prev, phoneNumber: e.target.value }))}
-                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-dwellio-primary focus:border-dwellio-primary transition-colors"
+                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ubani-primary focus:border-ubani-primary transition-colors"
                         placeholder="Enter your phone number"
                         required
                       />
@@ -854,7 +854,7 @@ export default function TenantProfile() {
                         type="text"
                         value={personalInfo.occupation}
                         onChange={(e) => setPersonalInfo(prev => ({ ...prev, occupation: e.target.value }))}
-                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-dwellio-primary focus:border-dwellio-primary transition-colors"
+                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ubani-primary focus:border-ubani-primary transition-colors"
                         placeholder="Enter your occupation"
                         required
                       />
@@ -868,7 +868,7 @@ export default function TenantProfile() {
                         type="number"
                         value={personalInfo.monthlyIncome}
                         onChange={(e) => setPersonalInfo(prev => ({ ...prev, monthlyIncome: e.target.value }))}
-                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-dwellio-primary focus:border-dwellio-primary transition-colors"
+                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ubani-primary focus:border-ubani-primary transition-colors"
                         placeholder="Enter your monthly income"
                         required
                       />
@@ -882,7 +882,7 @@ export default function TenantProfile() {
                         type="text"
                         value={personalInfo.employerName}
                         onChange={(e) => setPersonalInfo(prev => ({ ...prev, employerName: e.target.value }))}
-                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-dwellio-primary focus:border-dwellio-primary transition-colors"
+                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ubani-primary focus:border-ubani-primary transition-colors"
                         placeholder="Enter your employer name"
                       />
                     </div>
@@ -895,7 +895,7 @@ export default function TenantProfile() {
                         type="text"
                         value={personalInfo.emergencyContactName}
                         onChange={(e) => setPersonalInfo(prev => ({ ...prev, emergencyContactName: e.target.value }))}
-                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-dwellio-primary focus:border-dwellio-primary transition-colors"
+                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ubani-primary focus:border-ubani-primary transition-colors"
                         placeholder="Enter emergency contact name"
                       />
                     </div>
@@ -908,7 +908,7 @@ export default function TenantProfile() {
                         type="tel"
                         value={personalInfo.emergencyContactPhone}
                         onChange={(e) => setPersonalInfo(prev => ({ ...prev, emergencyContactPhone: e.target.value }))}
-                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-dwellio-primary focus:border-dwellio-primary transition-colors"
+                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ubani-primary focus:border-ubani-primary transition-colors"
                         placeholder="Enter emergency contact phone"
                       />
                     </div>
@@ -921,7 +921,7 @@ export default function TenantProfile() {
                         type="text"
                         value={personalInfo.emergencyContactRelationship}
                         onChange={(e) => setPersonalInfo(prev => ({ ...prev, emergencyContactRelationship: e.target.value }))}
-                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-dwellio-primary focus:border-dwellio-primary transition-colors"
+                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ubani-primary focus:border-ubani-primary transition-colors"
                         placeholder="Enter relationship (e.g., Parent, Sibling)"
                       />
                     </div>
@@ -939,7 +939,7 @@ export default function TenantProfile() {
                     <button
                       type="submit"
                       disabled={savingPersonal || loading}
-                      className="bg-dwellio-primary hover:bg-dwellio-primary-dark text-dwellio-dark px-6 py-3 rounded-lg font-medium transition-colors inline-flex items-center space-x-2 disabled:opacity-50"
+                      className="bg-ubani-primary hover:bg-ubani-primary-dark text-ubani-dark px-6 py-3 rounded-lg font-medium transition-colors inline-flex items-center space-x-2 disabled:opacity-50"
                     >
                       <FaSave className="w-4 h-4" />
                       <span>{savingPersonal ? 'Saving...' : 'Save Changes'}</span>
@@ -1069,7 +1069,7 @@ export default function TenantProfile() {
                         type="text"
                         value={residenceForm.address}
                         onChange={(e) => setResidenceForm(prev => ({ ...prev, address: e.target.value }))}
-                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-dwellio-primary focus:border-dwellio-primary transition-colors"
+                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ubani-primary focus:border-ubani-primary transition-colors"
                         placeholder="Enter your current address"
                         required
                       />
@@ -1083,7 +1083,7 @@ export default function TenantProfile() {
                         type="text"
                         value={residenceForm.landlordName}
                         onChange={(e) => setResidenceForm(prev => ({ ...prev, landlordName: e.target.value }))}
-                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-dwellio-primary focus:border-dwellio-primary transition-colors"
+                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ubani-primary focus:border-ubani-primary transition-colors"
                         placeholder="Enter landlord name"
                       />
                     </div>
@@ -1096,7 +1096,7 @@ export default function TenantProfile() {
                         type="tel"
                         value={residenceForm.landlordPhone}
                         onChange={(e) => setResidenceForm(prev => ({ ...prev, landlordPhone: e.target.value }))}
-                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-dwellio-primary focus:border-dwellio-primary transition-colors"
+                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ubani-primary focus:border-ubani-primary transition-colors"
                         placeholder="Enter landlord phone"
                       />
                     </div>
@@ -1109,7 +1109,7 @@ export default function TenantProfile() {
                         type="date"
                         value={residenceForm.moveInDate}
                         onChange={(e) => setResidenceForm(prev => ({ ...prev, moveInDate: e.target.value }))}
-                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-dwellio-primary focus:border-dwellio-primary transition-colors"
+                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ubani-primary focus:border-ubani-primary transition-colors"
                       />
                     </div>
 
@@ -1121,7 +1121,7 @@ export default function TenantProfile() {
                         type="date"
                         value={residenceForm.leaseEndDate}
                         onChange={(e) => setResidenceForm(prev => ({ ...prev, leaseEndDate: e.target.value }))}
-                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-dwellio-primary focus:border-dwellio-primary transition-colors"
+                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ubani-primary focus:border-ubani-primary transition-colors"
                       />
                     </div>
                   </div>
@@ -1138,7 +1138,7 @@ export default function TenantProfile() {
                     <button
                       type="submit"
                       disabled={savingResidence || loading}
-                      className="bg-dwellio-primary hover:bg-dwellio-primary-dark text-dwellio-dark px-6 py-3 rounded-lg font-medium transition-colors inline-flex items-center space-x-2 disabled:opacity-50"
+                      className="bg-ubani-primary hover:bg-ubani-primary-dark text-ubani-dark px-6 py-3 rounded-lg font-medium transition-colors inline-flex items-center space-x-2 disabled:opacity-50"
                     >
                       <FaSave className="w-4 h-4" />
                       <span>{savingResidence ? 'Saving...' : 'Save Changes'}</span>
