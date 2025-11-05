@@ -10,9 +10,10 @@ export default function MyProfile() {
   }, [navigate]);
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+    <div className="min-h-screen bg-ubani-black flex items-center justify-center">
       <div className="text-center">
-        <p className="text-gray-600">Redirecting to your profile...</p>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-ubani-yellow mx-auto mb-4"></div>
+        <p className="text-white">Redirecting to your profile...</p>
       </div>
     </div>
   );

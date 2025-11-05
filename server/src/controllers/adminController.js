@@ -310,6 +310,46 @@ export const getAllProperties = async (req, res) => {
   }
 };
 
+// Approve a property
+export const approveProperty = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    if (!mongoose.isValidObjectId(id)) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid property ID",
+      });
+    }
+
+    const property = await Property.findByIdAndUpdate(
+      id,
+      { status: "approved" },
+      { new: true }
+    );
+
+    if (!property) {
+      return res.status(404).json({
+        success: false,
+        message: "Property not found",
+      });
+    }
+
+    res.json({
+      success: true,
+      data: property,
+      message: "Property approved successfully",
+    });
+  } catch (error) {
+    console.error("Approve property error:", error);
+    res.status(500).json({
+      success: false,
+      message: "Failed to approve property",
+      error: error.message,
+    });
+  }
+};
+
 // Application Management
 export const getAllApplications = async (req, res) => {
   try {

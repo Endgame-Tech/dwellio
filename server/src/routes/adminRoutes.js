@@ -5,6 +5,7 @@ import {
   getUserById,
   updateUserStatus,
   getAllProperties,
+  approveProperty,
   getAllApplications,
   getChartData,
   getSystemSettings
@@ -46,6 +47,8 @@ router.post('/admin-users', requireAdminPermission('admin_management', 'create')
 
 // Property management routes
 router.get('/properties', requireAdminPermission('properties', 'read'), getAllProperties);
+router.put('/properties/:id/approve', requireAdminPermission('properties', 'update'), approveProperty);
+
 
 // Application management routes
 router.get('/applications', requireAdminPermission('applications', 'read'), getAllApplications);

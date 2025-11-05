@@ -21,7 +21,7 @@ export default function AboutUs() {
       name: "Adrian Okoro",
       role: "Founder & CEO",
       image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
-      bio: "With over 10 years in real estate and technology, Adrian founded Dwellio to revolutionize property management in Nigeria.",
+      bio: "With over 10 years in real estate and technology, Adrian founded Ubani to revolutionize property management in Nigeria.",
       linkedin: "#",
       twitter: "#",
       email: "adrian@ubani.com"
@@ -59,7 +59,7 @@ export default function AboutUs() {
     {
       year: "2020",
       title: "Company Founded",
-      description: "Dwellio was established with a vision to simplify property management in Nigeria."
+      description: "Ubani was established with a vision to simplify property management in Nigeria."
     },
     {
       year: "2021",
@@ -124,7 +124,7 @@ export default function AboutUs() {
               {/* Background image */}
               <img
                 src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070"
-                alt="About Dwellio"
+                alt="About Ubani"
                 className="absolute inset-0 w-full h-full object-cover"
               />
 
@@ -136,7 +136,7 @@ export default function AboutUs() {
                 {/* Headline with yellow accent */}
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">
                   <span className="block text-white">About</span>
-                  <span className="block text-ubani-yellow">Dwellio</span>
+                  <span className="block text-ubani-yellow">Ubani</span>
                 </h1>
 
                 {/* Description */}
@@ -193,12 +193,12 @@ export default function AboutUs() {
                 <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6 sm:mb-8">Our Story</h2>
                 <div className="space-y-4 sm:space-y-6 text-gray-300 text-base sm:text-lg leading-relaxed">
                   <p>
-                    Dwellio was born from a simple observation: property management in Nigeria was
+                    Ubani was born from a simple observation: property management in Nigeria was
                     unnecessarily complex, opaque, and frustrating for both landlords and tenants.
                   </p>
                   <p>
                     Founded in 2020 by Adrian Okoro, a real estate veteran with over a decade of
-                    experience, Dwellio set out to bridge the gap between traditional property
+                    experience, Ubani set out to bridge the gap between traditional property
                     management and modern technology solutions.
                   </p>
                   <p>
@@ -386,10 +386,10 @@ export default function AboutUs() {
           <div className="text-center py-16 sm:py-20 lg:py-24 relative z-10">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-ubani-black leading-tight">
               Ready to Experience the <br className="hidden sm:block" />
-              <span className="text-ubani-black">Dwellio Difference?</span>
+              <span className="text-ubani-black">Ubani Difference?</span>
             </h2>
             <p className="text-lg sm:text-xl text-ubani-black/80 mb-8 sm:mb-10 max-w-2xl mx-auto leading-relaxed">
-              Join thousands of satisfied customers who have made Dwellio their trusted property partner.
+              Join thousands of satisfied customers who have made Ubani their trusted property partner.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
               <a

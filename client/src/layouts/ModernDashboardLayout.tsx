@@ -92,26 +92,34 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   ];
 
   return (
-    <div className="min-h-screen ubani-dashboard-bg flex overflow-hidden">
+    <div className="min-h-screen bg-ubani-black flex overflow-hidden">
       {/* Mobile sidebar overlay */}
       {isMobile && sidebarOpen && (
         <div
-          className="fixed inset-0 z-40bg-opacity-50 lg:hidden backdrop-blur-xs z-50"
+          className="fixed inset-0 bg-black/50 lg:hidden backdrop-blur-sm z-40"
           onClick={() => setSidebarOpen(false)}
         />
       )}
 
       {/* Sidebar */}
-      <div className={`fixed inset-y-0 left-0 z-50 ${sidebarMinimized && !isMobile ? 'w-20' : 'w-72'} ubani-glass-sidebar dark:bg-neutral-900/95 transform transition-all duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'
+      <div className={`fixed inset-y-0 left-0 z-50 ${sidebarMinimized && !isMobile ? 'w-20' : 'w-72'} bg-[#1a1a1a] border-r border-white/10 transform transition-all duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'
         }`}>
         {/* Logo */}
-        <div className="flex items-center justify-between h-16 px-6 bg-ubani-dark/50 dark:bg-neutral-800/50">
+        <div className="flex items-center justify-between h-16 px-6 border-b border-white/10">
           <Link to="/" className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-ubani-primary rounded-xl flex items-center justify-center shadow-lg">
-              <span className="text-ubani-dark font-bold text-lg">D</span>
-            </div>
-            {!sidebarMinimized && (
-              <span className="text-ubani-light dark:text-neutral-100 text-xl font-bold transition-opacity duration-300">ubani</span>
+            {sidebarMinimized ? (
+              <img
+                src="/favicon.svg"
+                alt="Ubani Logo"
+                className="w-10 h-10 transition-all duration-300"
+              />
+            ) : (
+              <>
+                <div className="w-10 h-10 bg-ubani-yellow rounded-xl flex items-center justify-center shadow-lg">
+                  <span className="text-ubani-black font-bold text-lg">U</span>
+                </div>
+                <span className="text-white text-xl font-bold transition-opacity duration-300">Ubani</span>
+              </>
             )}
           </Link>
           <div className="flex items-center space-x-2">
@@ -119,7 +127,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
             {!isMobile && (
               <button
                 onClick={() => setSidebarMinimized(!sidebarMinimized)}
-                className="p-2 text-ubani-light/70 hover:text-ubani-light hover:bg-white/10 bg-white rounded-lg transition-colors ml-0.5 border border-ubani-dark scale-3d"
+                className="p-2 text-gray-400 hover:text-ubani-yellow hover:bg-white/10 rounded-lg transition-colors"
                 title={sidebarMinimized ? "Expand sidebar" : "Minimize sidebar"}
               >
                 {sidebarMinimized ? (
@@ -137,7 +145,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
             {isMobile && (
               <button
                 onClick={() => setSidebarOpen(false)}
-                className="p-2 text-ubani-light hover:bg-white/10 rounded-lg transition-colors"
+                className="p-2 text-gray-400 hover:text-white hover:bg-white/10 rounded-lg transition-colors"
               >
                 <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -148,15 +156,15 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
         </div>
 
         {/* Navigation */}
-        <nav className="flex-1 py-6 space-y-2">
+        <nav className="flex-1 py-6 space-y-2 px-4">
           {navigation.map((item) => (
             <Link
               key={item.name}
               to={item.href}
               onClick={() => isMobile && setSidebarOpen(false)}
-              className={`ubani-nav-item-modern ${isActive(item.href)
-                ? 'ubani-nav-item-active'
-                : 'hover:bg-ubani-light/10'
+              className={`flex items-center px-4 py-3 rounded-xl transition-all duration-300 ${isActive(item.href)
+                ? 'bg-ubani-yellow text-ubani-black font-semibold shadow-lg'
+                : 'text-gray-400 hover:bg-white/10 hover:text-ubani-yellow'
                 } ${sidebarMinimized ? 'justify-center px-3' : ''}`}
               title={sidebarMinimized ? item.name : ''}
             >
@@ -171,22 +179,22 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
         </nav>
 
         {/* User Profile */}
-        <div className="p-4 border-t border-ubani-light/20">
-          <div className={`flex items-center px-4 py-3 bg-ubani-dark/30 rounded-xl ${sidebarMinimized ? 'justify-center' : ''}`}>
-            <div className="w-10 h-10 bg-ubani-primary rounded-lg flex items-center justify-center text-ubani-dark font-semibold flex-shrink-0">
+        <div className="p-4 border-t border-white/10">
+          <div className={`flex items-center px-4 py-3 bg-white/5 rounded-xl hover:bg-white/10 transition-colors ${sidebarMinimized ? 'justify-center' : ''}`}>
+            <div className="w-10 h-10 bg-ubani-yellow rounded-lg flex items-center justify-center text-ubani-black font-semibold flex-shrink-0">
               <span className="text-sm">{user?.firstName?.charAt(0) || 'U'}</span>
             </div>
             {!sidebarMinimized && (
               <>
                 <div className="ml-3 flex-1 min-w-0">
-                  <p className="text-ubani-light font-medium text-sm truncate">
+                  <p className="text-white font-medium text-sm truncate">
                     {user?.firstName} {user?.lastName}
                   </p>
-                  <p className="text-ubani-primary opacity-45 text-xs truncate">{user?.email}</p>
+                  <p className="text-gray-400 text-xs truncate">{user?.email}</p>
                 </div>
                 <button
                   onClick={logout}
-                  className="ml-2 p-2 text-ubani-light/70 hover:text-ubani-light hover:bg-ubani-light/10 rounded-lg transition-colors flex-shrink-0"
+                  className="ml-2 p-2 text-gray-400 hover:text-ubani-yellow hover:bg-white/10 rounded-lg transition-colors flex-shrink-0"
                   title="Sign out"
                 >
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -197,9 +205,9 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
             )}
             {sidebarMinimized && (
               <div className="absolute left-full ml-2 hidden group-hover:block">
-                <div className="bg-ubani-dark text-ubani-light p-2 rounded-lg shadow-lg whitespace-nowrap">
+                <div className="bg-[#1a1a1a] text-white p-2 rounded-lg shadow-lg whitespace-nowrap border border-white/10">
                   <p className="font-medium text-sm">{user?.firstName} {user?.lastName}</p>
-                  <p className="text-xs opacity-70">{user?.email}</p>
+                  <p className="text-xs text-gray-400">{user?.email}</p>
                 </div>
               </div>
             )}
@@ -209,7 +217,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
             <div className="mt-2 flex justify-center">
               <button
                 onClick={logout}
-                className="p-2 text-ubani-light/70 hover:text-ubani-light hover:bg-ubani-light/10 rounded-lg transition-colors"
+                className="p-2 text-gray-400 hover:text-ubani-yellow hover:bg-white/10 rounded-lg transition-colors"
                 title="Sign out"
               >
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -224,11 +232,11 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       {/* Main Content Area */}
       <div className="flex-1 flex flex-col min-w-0 h-screen overflow-hidden">
         {/* Top Header - Fixed */}
-        <header className="flex h-16 shrink-0 items-center gap-x-4 bg-ubani-light/95 dark:bg-neutral-900/95 backdrop-blur-sm px-6 lg:px-8 shadow-sm border-b border-gray-200 dark:border-neutral-700 w-full z-30">
+        <header className="flex h-16 shrink-0 items-center gap-x-4 bg-[#1a1a1a] backdrop-blur-sm px-6 lg:px-8 shadow-sm border-b border-white/10 w-full z-30">
           {/* Mobile menu button */}
           <button
             type="button"
-            className="-m-2 p-2 text-ubani-dark dark:text-neutral-300 hover:text-ubani-dark dark:hover:text-neutral-100 hover:bg-ubani-primary/20 dark:hover:bg-neutral-700 rounded-lg lg:hidden transition-colors"
+            className="-m-2 p-2 text-gray-400 hover:text-ubani-yellow hover:bg-white/10 rounded-lg lg:hidden transition-colors"
             onClick={() => setSidebarOpen(true)}
           >
             <span className="sr-only">Open sidebar</span>
@@ -239,10 +247,10 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
 
           {/* Page title section */}
           <div className="flex-1 min-w-0">
-            <h1 className="text-xl lg:text-2xl font-bold text-ubani-dark dark:text-neutral-100 truncate">
+            <h1 className="text-xl lg:text-2xl font-bold text-white truncate">
               {getPageTitle()}
             </h1>
-            <p className="hidden sm:block text-ubani-dark/60 dark:text-neutral-400 text-sm">
+            <p className="hidden sm:block text-gray-400 text-sm">
               {new Date().toLocaleDateString('en-US', {
                 weekday: 'long',
                 year: 'numeric',
@@ -266,24 +274,24 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
               </div>
               <input
                 type="text"
-                className="block w-40 lg:w-48 pl-9 pr-3 py-1.5 border border-gray-300 rounded-lg text-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-ubani-500 focus:border-ubani-500 bg-gray-50 focus:bg-white transition-colors"
+                className="block w-40 lg:w-48 pl-9 pr-3 py-1.5 border border-white/10 rounded-lg text-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-ubani-yellow focus:border-ubani-yellow bg-ubani-black text-white transition-colors"
                 placeholder="Search..."
               />
             </div>
 
             {/* Mobile search button */}
-            <button className="md:hidden p-1.5 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg transition-colors">
+            <button className="md:hidden p-1.5 text-gray-400 hover:text-ubani-yellow hover:bg-white/10 rounded-lg transition-colors">
               <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
             </button>
 
             {/* Notifications */}
-            <button className="p-1.5 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg relative transition-colors">
+            <button className="p-1.5 text-gray-400 hover:text-ubani-yellow hover:bg-white/10 rounded-lg relative transition-colors">
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
               </svg>
-              <span className="absolute top-0.5 right-0.5 block h-1.5 w-1.5 rounded-full bg-red-400"></span>
+              <span className="absolute top-0.5 right-0.5 block h-1.5 w-1.5 rounded-full bg-ubani-yellow"></span>
             </button>
           </div>
         </header>
@@ -291,59 +299,59 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
         {/* Main Dashboard Content Grid - This is the scrolling container */}
         <div className="flex-1 flex overflow-hidden">
           {/* Primary Content Area - Only this scrolls */}
-          <main className="flex-1 overflow-y-auto overflow-x-hidden ubani-dashboard-bg ubani-scrollbar-hidden">
-            <div className="p-6 w-full max-w-none">
+          <main className="flex-1 overflow-y-auto overflow-x-hidden ubani-scrollbar-hidden">
+            <div className="w-full max-w-none">
               {children || <Outlet />}
             </div>
           </main>
 
           {/* Right Sidebar - Widgets and Status */}
-          <aside className="hidden xl:flex xl:flex-col xl:w-80 xl:bg-white/35 xl:border-l xl:border-gray-200 xl:overflow-y-auto">
+          <aside className="hidden xl:flex xl:flex-col xl:w-80 xl:bg-[#1a1a1a] xl:border-l xl:border-white/10 xl:overflow-y-auto">
             <div className="p-6 space-y-6">
               {/* Status Widget */}
-              <div className="bg-gradient-to-br from-[#ccf080] to-gray-800 rounded-2xl p-6 text-white">
+              <div className="bg-white/5 rounded-2xl border border-white/10 p-6 hover:bg-white/10 transition-colors">
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-lg font-semibold">Status Overview</h3>
-                  <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                  <h3 className="text-lg text-white font-semibold">Status Overview</h3>
+                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
                 </div>
                 <div className="space-y-3">
                   <div className="flex justify-between items-center">
-                    <span className="text-gray-300">Applications</span>
-                    <span className="font-semibold">Active</span>
+                    <span className="text-white/70">Applications</span>
+                    <span className="font-semibold text-white">Active</span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-gray-300">Rent Status</span>
-                    <span className="font-semibold text-green-400">Paid</span>
+                    <span className="text-white/70">Rent Status</span>
+                    <span className="font-semibold text-green-600">Paid</span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-gray-300">Lease</span>
-                    <span className="font-semibold">11 months left</span>
+                    <span className="text-white/70">Lease</span>
+                    <span className="font-semibold text-white">11 months left</span>
                   </div>
                 </div>
               </div>
 
               {/* Quick Actions */}
-              <div className="bg-white rounded-2xl border border-gray-200 p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
+              <div className="bg-white/5 rounded-2xl border border-white/10 p-6 hover:bg-white/10 transition-colors">
+                <h3 className="text-lg font-semibold text-white mb-4">Quick Actions</h3>
                 <div className="space-y-3">
                   <Link
                     to="/applications"
-                    className="flex items-center p-3 rounded-xl bg-ubani-50 hover:bg-ubani-100 transition-colors group"
+                    className="flex items-center p-3 rounded-xl bg-ubani-yellow/10 hover:bg-ubani-yellow/20 border border-ubani-yellow/20 transition-colors group"
                   >
-                    <div className="w-10 h-10 bg-ubani-500 rounded-lg flex items-center justify-center mr-3">
-                      <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <div className="w-10 h-10 bg-ubani-yellow rounded-lg flex items-center justify-center mr-3">
+                      <svg className="w-5 h-5 text-ubani-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                       </svg>
                     </div>
                     <div>
-                      <p className="font-medium text-gray-900">New Application</p>
-                      <p className="text-sm text-gray-600">Apply for properties</p>
+                      <p className="font-medium text-white">New Application</p>
+                      <p className="text-sm text-gray-400">Apply for properties</p>
                     </div>
                   </Link>
 
                   <Link
                     to="/tenant/profile"
-                    className="flex items-center p-3 rounded-xl bg-blue-50 hover:bg-blue-100 transition-colors group"
+                    className="flex items-center p-3 rounded-xl bg-blue-500/10 hover:bg-blue-500/20 border border-blue-500/20 transition-colors group"
                   >
                     <div className="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center mr-3">
                       <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -351,36 +359,36 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
                       </svg>
                     </div>
                     <div>
-                      <p className="font-medium text-gray-900">Update Profile</p>
-                      <p className="text-sm text-gray-600">Manage your info</p>
+                      <p className="font-medium text-white">Update Profile</p>
+                      <p className="text-sm text-gray-400">Manage your info</p>
                     </div>
                   </Link>
                 </div>
               </div>
 
               {/* Upcoming Events */}
-              <div className="bg-white rounded-2xl border border-gray-200 p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Upcoming</h3>
+              <div className="bg-white/5 rounded-2xl border border-white/10 p-6 hover:bg-white/10 transition-colors">
+                <h3 className="text-lg font-semibold text-white mb-4">Upcoming</h3>
                 <div className="space-y-4">
                   <div className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-ubani-500 rounded-full mt-2"></div>
+                    <div className="w-2 h-2 bg-ubani-yellow rounded-full mt-2"></div>
                     <div>
-                      <p className="font-medium text-gray-900">Rent Due</p>
-                      <p className="text-sm text-gray-600">Due in 5 days</p>
+                      <p className="font-medium text-white">Rent Due</p>
+                      <p className="text-sm text-gray-400">Due in 5 days</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
                     <div className="w-2 h-2 bg-yellow-500 rounded-full mt-2"></div>
                     <div>
-                      <p className="font-medium text-gray-900">Property Inspection</p>
-                      <p className="text-sm text-gray-600">Next week</p>
+                      <p className="font-medium text-white">Property Inspection</p>
+                      <p className="text-sm text-gray-400">Next week</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
                     <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
                     <div>
-                      <p className="font-medium text-gray-900">Lease Renewal</p>
-                      <p className="text-sm text-gray-600">In 2 months</p>
+                      <p className="font-medium text-white">Lease Renewal</p>
+                      <p className="text-sm text-gray-400">In 2 months</p>
                     </div>
                   </div>
                 </div>

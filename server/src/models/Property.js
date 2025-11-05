@@ -52,7 +52,7 @@ const propertySchema = new mongoose.Schema(
     deposit: { type: Number, required: true },
     status: {
       type: String,
-      enum: ["available", "occupied", "pending"],
+      enum: ["available", "occupied", "pending", "approved"],
       default: "available",
     },
     isActive: {

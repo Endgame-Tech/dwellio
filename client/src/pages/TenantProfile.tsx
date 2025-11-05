@@ -307,13 +307,13 @@ export default function TenantProfile() {
   const getStatusIcon = (status: string) => {
     switch (status) {
       case 'verified':
-        return <FaCheck className="text-ubani-600" />;
+        return <FaCheck className="text-emerald-400" />;
       case 'pending':
-        return <FaExclamationTriangle className="text-yellow-600" />;
+        return <FaExclamationTriangle className="text-yellow-400" />;
       case 'rejected':
-        return <FaExclamationTriangle className="text-red-600" />;
+        return <FaExclamationTriangle className="text-red-400" />;
       default:
-        return <FaUpload className="text-gray-400" />;
+        return <FaUpload className="text-gray-500" />;
     }
   };
 
@@ -321,24 +321,24 @@ export default function TenantProfile() {
     const status = getDocumentStatus(type);
 
     return (
-      <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border-2 border-gray-200 hover:border-emerald-300 hover:shadow-lg transition-all duration-300 group">
+      <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-ubani-yellow/30 hover:shadow-lg transition-all duration-300 group">
         <div className="flex items-start justify-between mb-6">
           <div className="flex-1">
-            <h3 className="font-bold text-gray-900 mb-2 text-lg">{title}</h3>
-            <p className="text-sm text-gray-600 leading-relaxed">{description}</p>
+            <h3 className="font-bold text-white mb-2 text-lg">{title}</h3>
+            <p className="text-sm text-gray-400 leading-relaxed">{description}</p>
           </div>
           <div className="flex items-center space-x-3 ml-4">
-            <div className={`w-10 h-10 rounded-2xl flex items-center justify-center ${status === 'verified' ? 'bg-emerald-100' :
-              status === 'pending' ? 'bg-amber-100' :
-                status === 'rejected' ? 'bg-rose-100' :
-                  'bg-gray-100'
+            <div className={`w-10 h-10 rounded-2xl flex items-center justify-center ${status === 'verified' ? 'bg-emerald-500/20' :
+              status === 'pending' ? 'bg-amber-500/20' :
+                status === 'rejected' ? 'bg-rose-500/20' :
+                  'bg-gray-500/20'
               }`}>
               {getStatusIcon(status)}
             </div>
             {status !== 'missing' && (
-              <span className={`text-xs px-4 py-2 rounded-full font-semibold ${status === 'verified' ? 'bg-emerald-100 text-emerald-800 border border-emerald-200' :
-                status === 'pending' ? 'bg-amber-100 text-amber-800 border border-amber-200' :
-                  'bg-rose-100 text-rose-800 border border-rose-200'
+              <span className={`text-xs px-4 py-2 rounded-full font-semibold ${status === 'verified' ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' :
+                status === 'pending' ? 'bg-amber-500/20 text-amber-400 border border-amber-500/30' :
+                  'bg-rose-500/20 text-rose-400 border border-rose-500/30'
                 }`}>
                 {status.charAt(0).toUpperCase() + status.slice(1)}
               </span>
@@ -346,11 +346,11 @@ export default function TenantProfile() {
           </div>
         </div>
 
-        <div className="border-2 border-dashed border-gray-300 rounded-2xl p-8 text-center hover:border-emerald-400 hover:bg-emerald-50/30 transition-all duration-300 group-hover:border-emerald-400 relative overflow-hidden">
+        <div className="border-2 border-dashed border-white/20 rounded-2xl p-8 text-center hover:border-ubani-yellow/40 hover:bg-ubani-yellow/5 transition-all duration-300 group-hover:border-ubani-yellow/40 relative overflow-hidden">
           {/* Background Pattern */}
           <div className="absolute inset-0 opacity-5">
-            <div className="absolute top-2 right-2 w-16 h-16 bg-emerald-500 rounded-full"></div>
-            <div className="absolute bottom-2 left-2 w-12 h-12 bg-emerald-500 rounded-full"></div>
+            <div className="absolute top-2 right-2 w-16 h-16 bg-ubani-yellow rounded-full"></div>
+            <div className="absolute bottom-2 left-2 w-12 h-12 bg-ubani-yellow rounded-full"></div>
           </div>
 
           <input
@@ -367,13 +367,13 @@ export default function TenantProfile() {
           />
           <label htmlFor={`file-upload-${type}`} className="cursor-pointer relative z-10">
             <div className="flex flex-col items-center">
-              <div className="w-16 h-16 bg-gradient-to-br from-emerald-100 to-emerald-200 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                <FaUpload className="w-7 h-7 text-emerald-600" />
+              <div className="w-16 h-16 bg-gradient-to-br from-ubani-yellow/20 to-ubani-yellow/30 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                <FaUpload className="w-7 h-7 text-ubani-yellow" />
               </div>
-              <span className="text-base font-semibold text-gray-900 mb-2">
+              <span className="text-base font-semibold text-white mb-2">
                 {status === 'missing' ? 'Upload Document' : 'Replace Document'}
               </span>
-              <span className="text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-full">
+              <span className="text-sm text-gray-400 bg-white/5 px-3 py-1 rounded-full">
                 PDF, JPG, PNG up to 10MB
               </span>
             </div>
@@ -383,29 +383,29 @@ export default function TenantProfile() {
     );
   }; if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center bg-ubani-black">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-ubani-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading your profile...</p>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-ubani-yellow mx-auto mb-4"></div>
+          <p className="text-gray-400">Loading your profile...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen  p-4 sm:p-6">
+    <div className="min-h-screen bg-ubani-black p-4 sm:p-6">
       {/* Clean Header */}
       <div className="mb-8">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center space-x-4">
-            <div className="w-12 h-12 bg-ubani-primary rounded-xl flex items-center justify-center">
-              <FaUser className="w-6 h-6 text-ubani-dark" />
+            <div className="w-12 h-12 bg-ubani-yellow rounded-xl flex items-center justify-center">
+              <FaUser className="w-6 h-6 text-ubani-black" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold text-ubani-dark">
+              <h1 className="text-3xl font-bold text-white">
                 My Profile
               </h1>
-              <p className="text-gray-600 mt-1">
+              <p className="text-gray-400 mt-1">
                 Manage your personal information and account settings
               </p>
             </div>
@@ -416,8 +416,8 @@ export default function TenantProfile() {
             <button
               onClick={() => setIsEditingPersonal(!isEditingPersonal)}
               className={`px-4 py-2 rounded-lg font-medium transition-colors inline-flex items-center space-x-2 ${isEditingPersonal
-                ? 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                : 'bg-ubani-primary text-ubani-dark hover:bg-ubani-primary-dark'
+                ? 'bg-white/10 text-gray-300 hover:bg-white/20 border border-white/20'
+                : 'bg-ubani-yellow text-ubani-black hover:bg-ubani-yellow/90'
                 }`}
             >
               {isEditingPersonal ? (
@@ -438,8 +438,8 @@ export default function TenantProfile() {
             <button
               onClick={() => setIsEditingResidence(!isEditingResidence)}
               className={`px-4 py-2 rounded-lg font-medium transition-colors inline-flex items-center space-x-2 ${isEditingResidence
-                ? 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                : 'bg-ubani-primary text-ubani-dark hover:bg-ubani-primary-dark'
+                ? 'bg-white/10 text-gray-300 hover:bg-white/20 border border-white/20'
+                : 'bg-ubani-yellow text-ubani-black hover:bg-ubani-yellow/90'
                 }`}
             >
               {isEditingResidence ? (
@@ -459,12 +459,12 @@ export default function TenantProfile() {
       </div>
 
       {/* Clean Profile Overview Card */}
-      <div className="bg-white rounded-xl border border-gray-200 p-8 mb-8">
+      <div className="bg-[#1a1a1a] rounded-xl border border-white/10 p-8 mb-8">
         <div className="flex flex-col xl:flex-row xl:items-center xl:justify-between gap-8">
           {/* Profile Avatar and Info */}
           <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-6 sm:space-y-0 sm:space-x-8">
             <div className="relative">
-              <div className="w-24 h-24 lg:w-32 lg:h-32 bg-ubani-primary rounded-2xl flex items-center justify-center overflow-hidden">
+              <div className="w-24 h-24 lg:w-32 lg:h-32 bg-ubani-yellow rounded-2xl flex items-center justify-center overflow-hidden">
                 {profilePhotoPreview || user?.profilePhoto ? (
                   <img
                     src={profilePhotoPreview || user?.profilePhoto || ''}
@@ -472,7 +472,7 @@ export default function TenantProfile() {
                     className="w-full h-full object-cover"
                   />
                 ) : (
-                  <span className="text-2xl lg:text-4xl font-bold text-ubani-dark">
+                  <span className="text-2xl lg:text-4xl font-bold text-ubani-black">
                     {user?.firstName?.charAt(0)}{user?.lastName?.charAt(0)}
                   </span>
                 )}
@@ -494,12 +494,12 @@ export default function TenantProfile() {
               {/* Camera button */}
               <label
                 htmlFor="profile-image-upload"
-                className="absolute -bottom-2 -left-2 w-8 h-8 lg:w-10 lg:h-10 bg-ubani-600 hover:bg-ubani-700 rounded-xl flex items-center justify-center border-2 border-white cursor-pointer transition-colors"
+                className="absolute -bottom-2 -left-2 w-8 h-8 lg:w-10 lg:h-10 bg-ubani-yellow hover:bg-ubani-yellow/90 rounded-xl flex items-center justify-center border-2 border-ubani-black cursor-pointer transition-colors"
               >
                 {uploadingImage ? (
-                  <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent"></div>
+                  <div className="animate-spin rounded-full h-4 w-4 border-2 border-ubani-black border-t-transparent"></div>
                 ) : (
-                  <FaCamera className="w-3 h-3 lg:w-4 lg:h-4 text-white" />
+                  <FaCamera className="w-3 h-3 lg:w-4 lg:h-4 text-ubani-black" />
                 )}
               </label>
 
@@ -513,55 +513,55 @@ export default function TenantProfile() {
               />
 
               {/* Simple Verification Badge */}
-              <div className="absolute -bottom-2 -right-2 w-8 h-8 lg:w-10 lg:h-10 bg-emerald-500 rounded-xl flex items-center justify-center border-2 border-white">
+              <div className="absolute -bottom-2 -right-2 w-8 h-8 lg:w-10 lg:h-10 bg-emerald-500 rounded-xl flex items-center justify-center border-2 border-ubani-black">
                 <FaCheck className="w-4 h-4 lg:w-5 lg:h-5 text-white" />
               </div>
             </div>
 
             <div className="flex-1 min-w-0">
               <div className="mb-4">
-                <h2 className="text-2xl lg:text-3xl font-bold text-ubani-dark mb-2">
+                <h2 className="text-2xl lg:text-3xl font-bold text-white mb-2">
                   {user?.firstName} {user?.lastName}
                 </h2>
-                <div className="flex items-center space-x-2 text-emerald-600 mb-3">
+                <div className="flex items-center space-x-2 text-emerald-400 mb-3">
                   <FaShieldAlt className="w-4 h-4" />
-                  <span className="font-medium text-sm bg-emerald-50 px-3 py-1 rounded-lg border border-emerald-200">
+                  <span className="font-medium text-sm bg-emerald-500/10 px-3 py-1 rounded-lg border border-emerald-500/30">
                     Verified Account
                   </span>
                 </div>
               </div>
 
               <div className="space-y-3">
-                <div className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg border border-gray-100">
-                  <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
-                    <FaEnvelope className="w-4 h-4 text-blue-600" />
+                <div className="flex items-center space-x-3 p-3 bg-white/5 rounded-lg border border-white/10">
+                  <div className="w-8 h-8 bg-blue-500/20 rounded-lg flex items-center justify-center">
+                    <FaEnvelope className="w-4 h-4 text-blue-400" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-gray-700">Email Address</p>
-                    <p className="text-ubani-dark font-semibold truncate">{user?.email}</p>
+                    <p className="text-sm font-medium text-gray-400">Email Address</p>
+                    <p className="text-white font-semibold truncate">{user?.email}</p>
                   </div>
                 </div>
 
-                <div className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg border border-gray-100">
-                  <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
-                    <FaPhone className="w-4 h-4 text-green-600" />
+                <div className="flex items-center space-x-3 p-3 bg-white/5 rounded-lg border border-white/10">
+                  <div className="w-8 h-8 bg-green-500/20 rounded-lg flex items-center justify-center">
+                    <FaPhone className="w-4 h-4 text-green-400" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-gray-700">Phone Number</p>
-                    <p className="text-ubani-dark font-semibold truncate">
+                    <p className="text-sm font-medium text-gray-400">Phone Number</p>
+                    <p className="text-white font-semibold truncate">
                       {user?.phoneNumber || 'Not provided'}
                     </p>
                   </div>
                 </div>
 
                 {user?.tenantProfile?.occupation && (
-                  <div className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg border border-gray-100">
-                    <div className="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center">
-                      <FaBriefcase className="w-4 h-4 text-purple-600" />
+                  <div className="flex items-center space-x-3 p-3 bg-white/5 rounded-lg border border-white/10">
+                    <div className="w-8 h-8 bg-purple-500/20 rounded-lg flex items-center justify-center">
+                      <FaBriefcase className="w-4 h-4 text-purple-400" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium text-gray-700">Occupation</p>
-                      <p className="text-ubani-dark font-semibold truncate">
+                      <p className="text-sm font-medium text-gray-400">Occupation</p>
+                      <p className="text-white font-semibold truncate">
                         {user.tenantProfile.occupation}
                       </p>
                     </div>
@@ -574,20 +574,20 @@ export default function TenantProfile() {
           {/* Profile Stats */}
           <div className="xl:w-80 space-y-4">
             {/* Profile Completion */}
-            <div className="bg-white rounded-xl border border-gray-200 p-6">
+            <div className="bg-white/5 rounded-xl border border-white/10 p-6">
               <div className="text-center mb-4">
-                <div className="text-sm font-medium text-gray-700 mb-3">Profile Completion</div>
+                <div className="text-sm font-medium text-gray-400 mb-3">Profile Completion</div>
                 <div className="relative w-20 h-20 mx-auto">
                   <svg className="w-20 h-20 transform -rotate-90" viewBox="0 0 36 36">
                     <path
-                      className="text-gray-200"
+                      className="text-white/10"
                       d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
                       fill="none"
                       stroke="currentColor"
                       strokeWidth="3"
                     />
                     <path
-                      className="text-ubani-primary"
+                      className="text-ubani-yellow"
                       d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
                       fill="none"
                       stroke="currentColor"
@@ -596,12 +596,12 @@ export default function TenantProfile() {
                     />
                   </svg>
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-xl font-bold text-ubani-dark">{profileCompletion}%</span>
+                    <span className="text-xl font-bold text-white">{profileCompletion}%</span>
                   </div>
                 </div>
               </div>
               <div className="text-center">
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-gray-400">
                   {profileCompletion === 100 ? 'Profile Complete!' : 'Complete your profile'}
                 </p>
               </div>
@@ -609,38 +609,38 @@ export default function TenantProfile() {
 
             {/* Quick Stats */}
             <div className="grid grid-cols-2 gap-3">
-              <div className="bg-white rounded-lg border border-gray-200 p-4 text-center">
-                <div className="w-8 h-8 bg-blue-50 rounded-lg mx-auto mb-2 flex items-center justify-center">
-                  <FaFileAlt className="w-4 h-4 text-blue-600" />
+              <div className="bg-white/5 rounded-lg border border-white/10 p-4 text-center">
+                <div className="w-8 h-8 bg-blue-500/20 rounded-lg mx-auto mb-2 flex items-center justify-center">
+                  <FaFileAlt className="w-4 h-4 text-blue-400" />
                 </div>
-                <div className="text-lg font-bold text-ubani-dark">{documents.length}</div>
-                <div className="text-xs text-gray-600">Documents</div>
+                <div className="text-lg font-bold text-white">{documents.length}</div>
+                <div className="text-xs text-gray-400">Documents</div>
               </div>
-              <div className="bg-white rounded-lg border border-gray-200 p-4 text-center">
-                <div className="w-8 h-8 bg-emerald-50 rounded-lg mx-auto mb-2 flex items-center justify-center">
-                  <FaCheck className="w-4 h-4 text-emerald-600" />
+              <div className="bg-white/5 rounded-lg border border-white/10 p-4 text-center">
+                <div className="w-8 h-8 bg-emerald-500/20 rounded-lg mx-auto mb-2 flex items-center justify-center">
+                  <FaCheck className="w-4 h-4 text-emerald-400" />
                 </div>
-                <div className="text-lg font-bold text-ubani-dark">
+                <div className="text-lg font-bold text-white">
                   {documents.filter(doc => doc.verified || doc.status === 'verified').length}
                 </div>
-                <div className="text-xs text-gray-600">Verified</div>
+                <div className="text-xs text-gray-400">Verified</div>
               </div>
             </div>
 
             {/* Account Status */}
-            <div className="bg-emerald-50 rounded-lg border border-emerald-200 p-4">
+            <div className="bg-emerald-500/10 rounded-lg border border-emerald-500/30 p-4">
               <div className="flex items-center space-x-2">
-                <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
-                <span className="text-emerald-800 font-medium text-sm">Account Active</span>
+                <div className="w-2 h-2 bg-emerald-400 rounded-full"></div>
+                <span className="text-emerald-400 font-medium text-sm">Account Active</span>
               </div>
-              <p className="text-emerald-700 text-xs mt-1">All systems operational</p>
+              <p className="text-emerald-500/70 text-xs mt-1">All systems operational</p>
             </div>
           </div>
         </div>
       </div>
 
       {/* Clean Navigation Tabs */}
-      <div className="bg-white rounded-xl border border-gray-200 p-6 mb-8">
+      <div className="bg-[#1a1a1a] rounded-xl border border-white/10 p-6 mb-8">
         <div className="flex flex-wrap gap-2">
           {[
             {
@@ -663,8 +663,8 @@ export default function TenantProfile() {
               key={tab.key}
               onClick={() => setActiveTab(tab.key as 'personal' | 'documents' | 'residence')}
               className={`px-4 py-2 rounded-lg font-medium text-sm transition-all duration-200 inline-flex items-center space-x-2 ${activeTab === tab.key
-                ? 'bg-ubani-primary text-ubani-dark'
-                : 'bg-gray-50 hover:bg-gray-100 text-gray-700 border border-gray-200'
+                ? 'bg-ubani-yellow text-ubani-black'
+                : 'bg-white/5 hover:bg-white/10 text-gray-400 border border-white/10'
                 }`}
             >
               {tab.icon}
@@ -675,18 +675,18 @@ export default function TenantProfile() {
       </div>
 
       {/* Main Content */}
-      <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
+      <div className="bg-[#1a1a1a] rounded-xl border border-white/10 overflow-hidden">
         {/* Personal Information Tab */}
         {activeTab === 'personal' && (
           <div>
-            <div className="px-8 py-6 bg-blue-50 border-b border-blue-100">
+            <div className="px-8 py-6 bg-blue-500/10 border-b border-blue-500/20">
               <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
+                <div className="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center">
                   <FaUser className="w-5 h-5 text-white" />
                 </div>
                 <div>
-                  <h2 className="text-xl font-bold text-blue-900">Personal Information</h2>
-                  <p className="text-blue-700 text-sm mt-1">Update your personal details and contact information</p>
+                  <h2 className="text-xl font-bold text-blue-400">Personal Information</h2>
+                  <p className="text-blue-400/70 text-sm mt-1">Update your personal details and contact information</p>
                 </div>
               </div>
             </div>
@@ -696,91 +696,91 @@ export default function TenantProfile() {
                 <div className="space-y-6">
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-sm font-medium text-gray-500 mb-1">
+                      <label className="block text-sm font-medium text-gray-400 mb-1">
                         First Name
                       </label>
-                      <p className="text-lg text-gray-900 font-medium">
+                      <p className="text-lg text-white font-medium">
                         {personalInfo.firstName || 'Not provided'}
                       </p>
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-500 mb-1">
+                      <label className="block text-sm font-medium text-gray-400 mb-1">
                         Last Name
                       </label>
-                      <p className="text-lg text-gray-900 font-medium">
+                      <p className="text-lg text-white font-medium">
                         {personalInfo.lastName || 'Not provided'}
                       </p>
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-500 mb-1">
+                      <label className="block text-sm font-medium text-gray-400 mb-1">
                         Email Address
                       </label>
-                      <p className="text-lg text-gray-900 font-medium">
+                      <p className="text-lg text-white font-medium">
                         {personalInfo.email || 'Not provided'}
                       </p>
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-500 mb-1">
+                      <label className="block text-sm font-medium text-gray-400 mb-1">
                         Phone Number
                       </label>
-                      <p className="text-lg text-gray-900 font-medium">
+                      <p className="text-lg text-white font-medium">
                         {personalInfo.phoneNumber || 'Not provided'}
                       </p>
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-500 mb-1">
+                      <label className="block text-sm font-medium text-gray-400 mb-1">
                         Occupation
                       </label>
-                      <p className="text-lg text-gray-900 font-medium">
+                      <p className="text-lg text-white font-medium">
                         {personalInfo.occupation || 'Not provided'}
                       </p>
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-500 mb-1">
+                      <label className="block text-sm font-medium text-gray-400 mb-1">
                         Monthly Income
                       </label>
-                      <p className="text-lg text-gray-900 font-medium">
+                      <p className="text-lg text-white font-medium">
                         {personalInfo.monthlyIncome ? `₦${Number(personalInfo.monthlyIncome).toLocaleString()}` : 'Not provided'}
                       </p>
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-500 mb-1">
+                      <label className="block text-sm font-medium text-gray-400 mb-1">
                         Employer Name
                       </label>
-                      <p className="text-lg text-gray-900 font-medium">
+                      <p className="text-lg text-white font-medium">
                         {personalInfo.employerName || 'Not provided'}
                       </p>
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-500 mb-1">
+                      <label className="block text-sm font-medium text-gray-400 mb-1">
                         Emergency Contact Name
                       </label>
-                      <p className="text-lg text-gray-900 font-medium">
+                      <p className="text-lg text-white font-medium">
                         {personalInfo.emergencyContactName || 'Not provided'}
                       </p>
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-500 mb-1">
+                      <label className="block text-sm font-medium text-gray-400 mb-1">
                         Emergency Contact Phone
                       </label>
-                      <p className="text-lg text-gray-900 font-medium">
+                      <p className="text-lg text-white font-medium">
                         {personalInfo.emergencyContactPhone || 'Not provided'}
                       </p>
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-500 mb-1">
+                      <label className="block text-sm font-medium text-gray-400 mb-1">
                         Emergency Contact Relationship
                       </label>
-                      <p className="text-lg text-gray-900 font-medium">
+                      <p className="text-lg text-white font-medium">
                         {personalInfo.emergencyContactRelationship || 'Not provided'}
                       </p>
                     </div>
@@ -791,147 +791,147 @@ export default function TenantProfile() {
                 <form onSubmit={handlePersonalInfoSubmit}>
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-sm font-medium text-gray-400 mb-2">
                         First Name *
                       </label>
                       <input
                         type="text"
                         value={personalInfo.firstName}
                         onChange={(e) => setPersonalInfo(prev => ({ ...prev, firstName: e.target.value }))}
-                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ubani-primary focus:border-ubani-primary transition-colors"
+                        className="w-full p-3 bg-white/5 border border-white/10 rounded-lg focus:ring-2 focus:ring-ubani-yellow focus:border-ubani-yellow transition-colors text-white placeholder-gray-500"
                         placeholder="Enter your first name"
                         required
                       />
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-sm font-medium text-gray-400 mb-2">
                         Last Name *
                       </label>
                       <input
                         type="text"
                         value={personalInfo.lastName}
                         onChange={(e) => setPersonalInfo(prev => ({ ...prev, lastName: e.target.value }))}
-                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ubani-primary focus:border-ubani-primary transition-colors"
+                        className="w-full p-3 bg-white/5 border border-white/10 rounded-lg focus:ring-2 focus:ring-ubani-yellow focus:border-ubani-yellow transition-colors text-white placeholder-gray-500"
                         placeholder="Enter your last name"
                         required
                       />
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-sm font-medium text-gray-400 mb-2">
                         Email Address *
                       </label>
                       <input
                         type="email"
                         value={personalInfo.email}
                         onChange={(e) => setPersonalInfo(prev => ({ ...prev, email: e.target.value }))}
-                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ubani-primary focus:border-ubani-primary transition-colors"
+                        className="w-full p-3 bg-white/5 border border-white/10 rounded-lg focus:ring-2 focus:ring-ubani-yellow focus:border-ubani-yellow transition-colors text-white placeholder-gray-500"
                         placeholder="Enter your email address"
                         required
                       />
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-sm font-medium text-gray-400 mb-2">
                         Phone Number *
                       </label>
                       <input
                         type="tel"
                         value={personalInfo.phoneNumber}
                         onChange={(e) => setPersonalInfo(prev => ({ ...prev, phoneNumber: e.target.value }))}
-                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ubani-primary focus:border-ubani-primary transition-colors"
+                        className="w-full p-3 bg-white/5 border border-white/10 rounded-lg focus:ring-2 focus:ring-ubani-yellow focus:border-ubani-yellow transition-colors text-white placeholder-gray-500"
                         placeholder="Enter your phone number"
                         required
                       />
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-sm font-medium text-gray-400 mb-2">
                         Occupation *
                       </label>
                       <input
                         type="text"
                         value={personalInfo.occupation}
                         onChange={(e) => setPersonalInfo(prev => ({ ...prev, occupation: e.target.value }))}
-                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ubani-primary focus:border-ubani-primary transition-colors"
+                        className="w-full p-3 bg-white/5 border border-white/10 rounded-lg focus:ring-2 focus:ring-ubani-yellow focus:border-ubani-yellow transition-colors text-white placeholder-gray-500"
                         placeholder="Enter your occupation"
                         required
                       />
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-sm font-medium text-gray-400 mb-2">
                         Monthly Income (₦) *
                       </label>
                       <input
                         type="number"
                         value={personalInfo.monthlyIncome}
                         onChange={(e) => setPersonalInfo(prev => ({ ...prev, monthlyIncome: e.target.value }))}
-                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ubani-primary focus:border-ubani-primary transition-colors"
+                        className="w-full p-3 bg-white/5 border border-white/10 rounded-lg focus:ring-2 focus:ring-ubani-yellow focus:border-ubani-yellow transition-colors text-white placeholder-gray-500"
                         placeholder="Enter your monthly income"
                         required
                       />
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-sm font-medium text-gray-400 mb-2">
                         Employer Name
                       </label>
                       <input
                         type="text"
                         value={personalInfo.employerName}
                         onChange={(e) => setPersonalInfo(prev => ({ ...prev, employerName: e.target.value }))}
-                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ubani-primary focus:border-ubani-primary transition-colors"
+                        className="w-full p-3 bg-white/5 border border-white/10 rounded-lg focus:ring-2 focus:ring-ubani-yellow focus:border-ubani-yellow transition-colors text-white placeholder-gray-500"
                         placeholder="Enter your employer name"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-sm font-medium text-gray-400 mb-2">
                         Emergency Contact Name
                       </label>
                       <input
                         type="text"
                         value={personalInfo.emergencyContactName}
                         onChange={(e) => setPersonalInfo(prev => ({ ...prev, emergencyContactName: e.target.value }))}
-                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ubani-primary focus:border-ubani-primary transition-colors"
+                        className="w-full p-3 bg-white/5 border border-white/10 rounded-lg focus:ring-2 focus:ring-ubani-yellow focus:border-ubani-yellow transition-colors text-white placeholder-gray-500"
                         placeholder="Enter emergency contact name"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-sm font-medium text-gray-400 mb-2">
                         Emergency Contact Phone
                       </label>
                       <input
                         type="tel"
                         value={personalInfo.emergencyContactPhone}
                         onChange={(e) => setPersonalInfo(prev => ({ ...prev, emergencyContactPhone: e.target.value }))}
-                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ubani-primary focus:border-ubani-primary transition-colors"
+                        className="w-full p-3 bg-white/5 border border-white/10 rounded-lg focus:ring-2 focus:ring-ubani-yellow focus:border-ubani-yellow transition-colors text-white placeholder-gray-500"
                         placeholder="Enter emergency contact phone"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-sm font-medium text-gray-400 mb-2">
                         Emergency Contact Relationship
                       </label>
                       <input
                         type="text"
                         value={personalInfo.emergencyContactRelationship}
                         onChange={(e) => setPersonalInfo(prev => ({ ...prev, emergencyContactRelationship: e.target.value }))}
-                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ubani-primary focus:border-ubani-primary transition-colors"
+                        className="w-full p-3 bg-white/5 border border-white/10 rounded-lg focus:ring-2 focus:ring-ubani-yellow focus:border-ubani-yellow transition-colors text-white placeholder-gray-500"
                         placeholder="Enter relationship (e.g., Parent, Sibling)"
                       />
                     </div>
                   </div>
 
-                  <div className="flex justify-end space-x-3 pt-6 border-t border-gray-200 mt-8">
+                  <div className="flex justify-end space-x-3 pt-6 border-t border-white/10 mt-8">
                     <button
                       type="button"
                       onClick={() => setIsEditingPersonal(false)}
-                      className="bg-gray-100 hover:bg-gray-200 text-gray-700 px-6 py-3 rounded-lg font-medium transition-colors inline-flex items-center space-x-2"
+                      className="bg-white/5 hover:bg-white/10 text-gray-300 px-6 py-3 rounded-lg font-medium transition-colors inline-flex items-center space-x-2 border border-white/10"
                     >
                       <FaTimes className="w-4 h-4" />
                       <span>Cancel</span>
@@ -939,7 +939,7 @@ export default function TenantProfile() {
                     <button
                       type="submit"
                       disabled={savingPersonal || loading}
-                      className="bg-ubani-primary hover:bg-ubani-primary-dark text-ubani-dark px-6 py-3 rounded-lg font-medium transition-colors inline-flex items-center space-x-2 disabled:opacity-50"
+                      className="bg-ubani-yellow hover:bg-ubani-yellow/90 text-ubani-black px-6 py-3 rounded-lg font-medium transition-colors inline-flex items-center space-x-2 disabled:opacity-50"
                     >
                       <FaSave className="w-4 h-4" />
                       <span>{savingPersonal ? 'Saving...' : 'Save Changes'}</span>
@@ -954,14 +954,14 @@ export default function TenantProfile() {
         {/* Documents Tab */}
         {activeTab === 'documents' && (
           <div>
-            <div className="px-8 py-6 bg-emerald-50 border-b border-emerald-100">
+            <div className="px-8 py-6 bg-emerald-500/10 border-b border-emerald-500/20">
               <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 bg-emerald-600 rounded-lg flex items-center justify-center">
+                <div className="w-10 h-10 bg-emerald-500 rounded-lg flex items-center justify-center">
                   <FaFileAlt className="w-5 h-5 text-white" />
                 </div>
                 <div>
-                  <h2 className="text-xl font-bold text-emerald-900">Documents</h2>
-                  <p className="text-emerald-700 text-sm mt-1">Upload required documents for verification</p>
+                  <h2 className="text-xl font-bold text-emerald-400">Documents</h2>
+                  <p className="text-emerald-400/70 text-sm mt-1">Upload required documents for verification</p>
                 </div>
               </div>
             </div>
@@ -995,14 +995,14 @@ export default function TenantProfile() {
         {/* Current Residence Tab */}
         {activeTab === 'residence' && (
           <div>
-            <div className="px-8 py-6 bg-purple-50 border-b border-purple-100">
+            <div className="px-8 py-6 bg-purple-500/10 border-b border-purple-500/20">
               <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 bg-purple-600 rounded-lg flex items-center justify-center">
+                <div className="w-10 h-10 bg-purple-500 rounded-lg flex items-center justify-center">
                   <FaHome className="w-5 h-5 text-white" />
                 </div>
                 <div>
-                  <h2 className="text-xl font-bold text-purple-900">Current Residence</h2>
-                  <p className="text-purple-700 text-sm mt-1">Provide details about your current living situation</p>
+                  <h2 className="text-xl font-bold text-purple-400">Current Residence</h2>
+                  <p className="text-purple-400/70 text-sm mt-1">Provide details about your current living situation</p>
                 </div>
               </div>
             </div>
@@ -1012,46 +1012,46 @@ export default function TenantProfile() {
                 <div className="space-y-6">
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     <div className="lg:col-span-2">
-                      <label className="block text-sm font-medium text-gray-500 mb-1">
+                      <label className="block text-sm font-medium text-gray-400 mb-1">
                         Current Address
                       </label>
-                      <p className="text-lg text-gray-900 font-medium">
+                      <p className="text-lg text-white font-medium">
                         {residenceForm.address || 'Not provided'}
                       </p>
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-500 mb-1">
+                      <label className="block text-sm font-medium text-gray-400 mb-1">
                         Landlord Name
                       </label>
-                      <p className="text-lg text-gray-900 font-medium">
+                      <p className="text-lg text-white font-medium">
                         {residenceForm.landlordName || 'Not provided'}
                       </p>
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-500 mb-1">
+                      <label className="block text-sm font-medium text-gray-400 mb-1">
                         Landlord Phone
                       </label>
-                      <p className="text-lg text-gray-900 font-medium">
+                      <p className="text-lg text-white font-medium">
                         {residenceForm.landlordPhone || 'Not provided'}
                       </p>
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-500 mb-1">
+                      <label className="block text-sm font-medium text-gray-400 mb-1">
                         Move-In Date
                       </label>
-                      <p className="text-lg text-gray-900 font-medium">
+                      <p className="text-lg text-white font-medium">
                         {residenceForm.moveInDate ? new Date(residenceForm.moveInDate).toLocaleDateString() : 'Not provided'}
                       </p>
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-500 mb-1">
+                      <label className="block text-sm font-medium text-gray-400 mb-1">
                         Lease End Date
                       </label>
-                      <p className="text-lg text-gray-900 font-medium">
+                      <p className="text-lg text-white font-medium">
                         {residenceForm.leaseEndDate ? new Date(residenceForm.leaseEndDate).toLocaleDateString() : 'Not provided'}
                       </p>
                     </div>
@@ -1062,75 +1062,75 @@ export default function TenantProfile() {
                 <form onSubmit={handleResidenceSubmit}>
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     <div className="lg:col-span-2">
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-sm font-medium text-gray-400 mb-2">
                         Current Address *
                       </label>
                       <input
                         type="text"
                         value={residenceForm.address}
                         onChange={(e) => setResidenceForm(prev => ({ ...prev, address: e.target.value }))}
-                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ubani-primary focus:border-ubani-primary transition-colors"
+                        className="w-full p-3 bg-white/5 border border-white/10 rounded-lg focus:ring-2 focus:ring-ubani-yellow focus:border-ubani-yellow transition-colors text-white placeholder-gray-500"
                         placeholder="Enter your current address"
                         required
                       />
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-sm font-medium text-gray-400 mb-2">
                         Landlord Name
                       </label>
                       <input
                         type="text"
                         value={residenceForm.landlordName}
                         onChange={(e) => setResidenceForm(prev => ({ ...prev, landlordName: e.target.value }))}
-                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ubani-primary focus:border-ubani-primary transition-colors"
+                        className="w-full p-3 bg-white/5 border border-white/10 rounded-lg focus:ring-2 focus:ring-ubani-yellow focus:border-ubani-yellow transition-colors text-white placeholder-gray-500"
                         placeholder="Enter landlord name"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-sm font-medium text-gray-400 mb-2">
                         Landlord Phone
                       </label>
                       <input
                         type="tel"
                         value={residenceForm.landlordPhone}
                         onChange={(e) => setResidenceForm(prev => ({ ...prev, landlordPhone: e.target.value }))}
-                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ubani-primary focus:border-ubani-primary transition-colors"
+                        className="w-full p-3 bg-white/5 border border-white/10 rounded-lg focus:ring-2 focus:ring-ubani-yellow focus:border-ubani-yellow transition-colors text-white placeholder-gray-500"
                         placeholder="Enter landlord phone"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-sm font-medium text-gray-400 mb-2">
                         Move-In Date
                       </label>
                       <input
                         type="date"
                         value={residenceForm.moveInDate}
                         onChange={(e) => setResidenceForm(prev => ({ ...prev, moveInDate: e.target.value }))}
-                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ubani-primary focus:border-ubani-primary transition-colors"
+                        className="w-full p-3 bg-white/5 border border-white/10 rounded-lg focus:ring-2 focus:ring-ubani-yellow focus:border-ubani-yellow transition-colors text-white placeholder-gray-500"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-sm font-medium text-gray-400 mb-2">
                         Lease End Date
                       </label>
                       <input
                         type="date"
                         value={residenceForm.leaseEndDate}
                         onChange={(e) => setResidenceForm(prev => ({ ...prev, leaseEndDate: e.target.value }))}
-                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ubani-primary focus:border-ubani-primary transition-colors"
+                        className="w-full p-3 bg-white/5 border border-white/10 rounded-lg focus:ring-2 focus:ring-ubani-yellow focus:border-ubani-yellow transition-colors text-white placeholder-gray-500"
                       />
                     </div>
                   </div>
 
-                  <div className="flex justify-end space-x-3 pt-6 border-t border-gray-200 mt-8">
+                  <div className="flex justify-end space-x-3 pt-6 border-t border-white/10 mt-8">
                     <button
                       type="button"
                       onClick={() => setIsEditingResidence(false)}
-                      className="bg-gray-100 hover:bg-gray-200 text-gray-700 px-6 py-3 rounded-lg font-medium transition-colors inline-flex items-center space-x-2"
+                      className="bg-white/5 hover:bg-white/10 text-gray-300 px-6 py-3 rounded-lg font-medium transition-colors inline-flex items-center space-x-2 border border-white/10"
                     >
                       <FaTimes className="w-4 h-4" />
                       <span>Cancel</span>
@@ -1138,7 +1138,7 @@ export default function TenantProfile() {
                     <button
                       type="submit"
                       disabled={savingResidence || loading}
-                      className="bg-ubani-primary hover:bg-ubani-primary-dark text-ubani-dark px-6 py-3 rounded-lg font-medium transition-colors inline-flex items-center space-x-2 disabled:opacity-50"
+                      className="bg-ubani-yellow hover:bg-ubani-yellow/90 text-ubani-black px-6 py-3 rounded-lg font-medium transition-colors inline-flex items-center space-x-2 disabled:opacity-50"
                     >
                       <FaSave className="w-4 h-4" />
                       <span>{savingResidence ? 'Saving...' : 'Save Changes'}</span>

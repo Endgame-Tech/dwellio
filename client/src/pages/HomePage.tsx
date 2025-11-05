@@ -113,7 +113,7 @@ export default function HomePage() {
 
                 {/* Description */}
                 <p className="text-base sm:text-lg text-white leading-relaxed max-w-7xl">
-                  Dwellio helps Nigerian tenants secure quality, verified homes with reduced agency fees, transparent documentation, negotiated deposits, and guided onboarding. We combine professional representation with a digital workspace that keeps every step simple, traceable, and stress-free.
+                  Ubani helps Nigerian tenants secure quality, verified homes with reduced agency fees, transparent documentation, negotiated deposits, and guided onboarding. We combine professional representation with a digital workspace that keeps every step simple, traceable, and stress-free.
                 </p>
               </div>
             </div>
@@ -251,7 +251,7 @@ export default function HomePage() {
             {/* Testimonial 1 */}
             <div className="space-y-8">
               <TestimonialCard
-                quote="The lovely team at Dwellio has provided our startup with significant leverage. Their work is exceptionally professional, and Adrian is always attentive to our needs, taking the time to understand our briefs and offer valuable direction. Additionally, their turnaround times are impressively fast!"
+                quote="The lovely team at Ubani has provided our startup with significant leverage. Their work is exceptionally professional, and Adrian is always attentive to our needs, taking the time to understand our briefs and offer valuable direction. Additionally, their turnaround times are impressively fast!"
                 name="Century Favour"
                 title="UX Manager at Superhabits"
                 image="https://centuryfavour.com/wp-content/uploads/2025/07/Century-Favour.jpg"
@@ -261,7 +261,7 @@ export default function HomePage() {
             {/* Testimonial 2 */}
             <div className="space-y-8">
               <TestimonialCard
-                quote="Dwellio has completely transformed how we approach property management. Their innovative platform and dedicated team have made finding quality homes effortless for our clients."
+                quote="Ubani has completely transformed how we approach property management. Their innovative platform and dedicated team have made finding quality homes effortless for our clients."
                 name="Precious Ebere"
                 title="Product Designer at Lightdash"
                 image="https://scontent.fabv3-1.fna.fbcdn.net/v/t39.30808-6/332357320_918082625993953_1796182917463866993_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeEqG8k6mXepx0NSYc8jBhb0g4_IuSmNYtuDj8i5KY1i289EjOX_ixv9EDZhQJlBDUpan-QpWUomS6fpWtSyMbrK&_nc_ohc=hJO3GXYN7AMQ7kNvwFaPi4O&_nc_oc=Admq0kb-3pNwUHQd4hvJ2vnHHdAnZHyLGYcdLjlIs8g67eBQGKgzHtBvgGcfa1ZL1FQ&_nc_zt=23&_nc_ht=scontent.fabv3-1.fna&_nc_gid=6ZG7Hm0Bke2yMyB99He0Eg&oh=00_Afhi7QtKlS-9t_49fF_opouT755J0LkeK1PXeM3KGL9Jow&oe=690F1233"
@@ -271,7 +271,7 @@ export default function HomePage() {
             {/* Testimonial 3 */}
             <div className="space-y-8">
               <TestimonialCard
-                quote="Dwellio has greatly exceeded our expectations. The communication is always excellent, the turnaround is extremely quick, and the designs are fresh, innovative, and spot on!"
+                quote="Ubani has greatly exceeded our expectations. The communication is always excellent, the turnaround is extremely quick, and the designs are fresh, innovative, and spot on!"
                 name="Rob West"
                 title="CEO of Kingdom Advisors"
                 image="https://imageio.forbes.com/specials-images/imageserve/66c3b9c5b69e4e9fcffc9ca6/0x0.jpg?format=jpg&height=900&width=1600&fit=bounds"
@@ -280,7 +280,7 @@ export default function HomePage() {
             {/* Testimonial 4 */}
             <div className="space-y-8">
               <TestimonialCard
-                quote="The lovely team at Dwellio has provided our startup with significant leverage. Their work is exceptionally professional, and Adrian is always attentive to our needs, taking the time to understand our briefs and offer valuable direction. Additionally, their turnaround times are impressively fast!"
+                quote="The lovely team at Ubani has provided our startup with significant leverage. Their work is exceptionally professional, and Adrian is always attentive to our needs, taking the time to understand our briefs and offer valuable direction. Additionally, their turnaround times are impressively fast!"
                 name="Jessica Nwamadi"
                 title="UX Manager at Superhabits"
                 image="https://img.freepik.com/free-photo/indian-woman-posing-cute-stylish-outfit-camera-smiling_482257-122351.jpg?semt=ais_hybrid&w=740&q=80"

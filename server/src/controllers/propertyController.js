@@ -28,7 +28,7 @@ const getCuratedProperties = async (req, res) => {
 
     // Build query with optional filters from query parameters
     const query = {
-      status: "available",
+      status: "approved",
       isActive: true,
     };
 
@@ -72,12 +72,7 @@ const getCuratedProperties = async (req, res) => {
         total,
         limit: parseInt(limit),
       },
-      moveOutIntent: {
-        preferredAreas: moveOutIntent.preferredAreas,
-        budgetRange: moveOutIntent.budgetRange,
-        propertyType: moveOutIntent.propertyType,
-        status: moveOutIntent.status,
-      },
+
     });
   } catch (error) {
     console.error("Get curated properties error:", error);

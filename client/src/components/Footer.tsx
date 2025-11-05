@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import PageContainer from './PageContainer';
 
 export default function Footer() {
@@ -9,7 +9,7 @@ export default function Footer() {
           {/* Brand Section */}
           <div>
             <div className="mb-6">
-              <span className="text-3xl font-bold">ubani</span>
+              <span className="text-3xl font-bold">Ubani</span>
             </div>
             <p className="text-gray-400 mb-6 leading-relaxed">
               Your trusted tenant representative in Nigeria. Finding you the perfect home with lower fees and better service.
@@ -145,7 +145,7 @@ export default function Footer() {
         {/* Copyright Section */}
         <div className="mt-12 pt-8 border-t border-white/10 text-center">
           <p className="text-gray-400">
-            &copy; {new Date().getFullYear()} Dwellio. All rights reserved.
+            &copy; {new Date().getFullYear()} Ubani. All rights reserved.
           </p>
         </div>
       </PageContainer>
