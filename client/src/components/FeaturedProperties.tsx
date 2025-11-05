@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import PageContainer from './PageContainer';
 import PropertyCard from './PropertyCard';
 
@@ -89,8 +89,8 @@ export default function FeaturedProperties() {
                 key={filter}
                 onClick={() => setActiveFilter(filter)}
                 className={`px-6 py-3 rounded-full font-medium text-sm sm:text-base transition-all duration-300 ${activeFilter === filter
-                    ? 'bg-ubani-yellow text-ubani-black'
-                    : 'bg-[#1a1a1a] text-gray-400 hover:bg-[#222222] hover:text-white border border-white/10'
+                  ? 'bg-ubani-yellow text-ubani-black'
+                  : 'bg-[#1a1a1a] text-gray-400 hover:bg-[#222222] hover:text-white border border-white/10'
                   }`}
               >
                 {filter}
@@ -104,8 +104,12 @@ export default function FeaturedProperties() {
           {properties.map((property) => (
             <PropertyCard
               key={property.id}
-              image={property.image}
-              address={property.address}
+              property={{
+                _id: property.id.toString(),
+                images: [property.image],
+                location: { address: property.address },
+                type: property.type
+              }}
               size={property.size}
             />
           ))}

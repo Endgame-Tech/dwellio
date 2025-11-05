@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
-import { useTheme } from '../hooks/useTheme';
 import { toast } from 'react-toastify';
-import { FaSun, FaMoon, FaEye, FaEyeSlash, FaCamera, FaUser } from 'react-icons/fa';
+import { FaEye, FaEyeSlash, FaCamera, FaUser } from 'react-icons/fa';
 import logo from '../assets/logo.png';
 
 export default function SignUp() {
@@ -22,7 +21,6 @@ export default function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const { signup } = useAuth();
-  const { theme, toggleTheme } = useTheme();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
