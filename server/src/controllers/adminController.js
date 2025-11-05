@@ -324,7 +324,7 @@ export const approveProperty = async (req, res) => {
 
     const property = await Property.findByIdAndUpdate(
       id,
-      { status: "approved" },
+      { approvalStatus: "approved", rejectionReason: null },
       { new: true }
     );
 
@@ -345,6 +345,50 @@ export const approveProperty = async (req, res) => {
     res.status(500).json({
       success: false,
       message: "Failed to approve property",
+      error: error.message,
+    });
+  }
+};
+
+// Reject a property
+export const rejectProperty = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { reason } = req.body;
+
+    if (!mongoose.isValidObjectId(id)) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid property ID",
+      });
+    }
+
+    const property = await Property.findByIdAndUpdate(
+      id,
+      {
+        approvalStatus: "not_approved",
+        rejectionReason: reason || "Not approved by admin"
+      },
+      { new: true }
+    );
+
+    if (!property) {
+      return res.status(404).json({
+        success: false,
+        message: "Property not found",
+      });
+    }
+
+    res.json({
+      success: true,
+      data: property,
+      message: "Property rejected successfully",
+    });
+  } catch (error) {
+    console.error("Reject property error:", error);
+    res.status(500).json({
+      success: false,
+      message: "Failed to reject property",
       error: error.message,
     });
   }
@@ -479,11 +523,16 @@ export const getChartData = async (req, res) => {
             },
             {
               $project: {
-                name: { $toTitle: "$_id" },
+                name: "$_id",
                 value: "$count",
               },
             },
           ]);
+          // Capitalize the first letter in JavaScript
+          data = data.map(item => ({
+            name: item.name ? item.name.charAt(0).toUpperCase() + item.name.slice(1) : item.name,
+            value: item.value
+          }));
         } catch (error) {
           console.error("Properties chart error:", error);
           // Fallback data
@@ -507,11 +556,18 @@ export const getChartData = async (req, res) => {
             },
             {
               $project: {
-                name: { $toTitle: "$_id" },
+                name: "$_id",
                 value: "$count",
               },
             },
           ]);
+          // Capitalize the first letter and handle underscores in JavaScript
+          data = data.map(item => ({
+            name: item.name
+              ? item.name.split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
+              : item.name,
+            value: item.value
+          }));
         } catch (error) {
           console.error("Applications chart error:", error);
           // Fallback data

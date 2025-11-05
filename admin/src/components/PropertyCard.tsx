@@ -16,9 +16,10 @@ interface PropertyCardProps {
     property: Property;
     onApprove?: (propertyId: string) => void;
     onReject?: (propertyId: string) => void;
+    onToggleApproval?: (propertyId: string, newStatus: 'approved' | 'not_approved') => void;
 }
 
-const PropertyCard: React.FC<PropertyCardProps> = ({ property, onApprove, onReject }) => {
+const PropertyCard: React.FC<PropertyCardProps> = ({ property, onApprove, onReject, onToggleApproval }) => {
     const imageUrl = (() => {
         if (property.images && property.images.length > 0) {
             return Array.isArray(property.images) && typeof property.images[0] === 'string'
@@ -46,8 +47,42 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ property, onApprove, onReje
                     className="w-full h-full object-cover rounded-[12px]"
                 />
 
-                {/* Admin Actions - Show on hover */}
-                {(onApprove || onReject) && (
+                {/* Approval Status Pill Toggle - Always visible */}
+                {onToggleApproval && (
+                    <div className="absolute top-[16px] right-[16px] z-10">
+                        <div className="flex bg-white/95 backdrop-blur-sm rounded-full p-1 shadow-lg">
+                            <button
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    onToggleApproval(property._id, 'approved');
+                                }}
+                                className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-200 ${
+                                    property.approvalStatus === 'approved'
+                                        ? 'bg-green-500 text-white shadow-md'
+                                        : 'text-gray-600 hover:text-gray-900'
+                                }`}
+                            >
+                                Approved
+                            </button>
+                            <button
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    onToggleApproval(property._id, 'not_approved');
+                                }}
+                                className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-200 ${
+                                    property.approvalStatus === 'not_approved'
+                                        ? 'bg-red-500 text-white shadow-md'
+                                        : 'text-gray-600 hover:text-gray-900'
+                                }`}
+                            >
+                                Not Approved
+                            </button>
+                        </div>
+                    </div>
+                )}
+
+                {/* Legacy Admin Actions - Show on hover (for backward compatibility) */}
+                {!onToggleApproval && (onApprove || onReject) && (
                     <div className="absolute top-[16px] right-[16px] flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity z-10">
                         {onApprove && (
                             <button

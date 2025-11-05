@@ -107,6 +107,7 @@ export interface Property {
   propertyType: 'apartment' | 'house' | 'studio' | 'duplex';
   type: 'flat' | 'duplex' | 'bungalow' | 'studio' | 'shop' | 'office';
   status: 'available' | 'occupied' | 'pending';
+  approvalStatus?: 'approved' | 'not_approved' | 'pending';
   bedrooms: number;
   bathrooms: number;
   area: number;

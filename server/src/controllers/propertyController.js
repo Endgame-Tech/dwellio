@@ -3,17 +3,20 @@ import Property from "../models/Property.js";
 import User from "../models/User.js";
 import Application from "../models/Application.js";
 
-// Get curated properties for tenant (only after move-out intent)
+// Get curated properties for everyone (public access)
 const getCuratedProperties = async (req, res) => {
   try {
-    // Check if user has active move-out intent
-    const user = await User.findById(req.user.userId);
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
+    // Optional: Check if user is authenticated (for personalized experience)
+    // But don't require authentication to browse properties
+    const userId = req.user?.userId;
+    let user = null;
+
+    if (userId) {
+      user = await User.findById(userId);
     }
 
-    // Allow all authenticated users to browse properties
-    // Payment will be required only for application submission
+    // Allow everyone to browse properties
+    // Authentication will be required only for application submission
 
     const {
       page = 1,
@@ -28,7 +31,7 @@ const getCuratedProperties = async (req, res) => {
 
     // Build query with optional filters from query parameters
     const query = {
-      status: "approved",
+      approvalStatus: "approved",
       isActive: true,
     };
 
@@ -55,6 +58,8 @@ const getCuratedProperties = async (req, res) => {
       query.bathrooms = parseInt(bathrooms);
     }
 
+    console.log('🔍 Property Query:', JSON.stringify(query, null, 2));
+
     const properties = await Property.find(query)
       .populate("landlordId", "fullName phoneNumber email")
       .sort({ createdAt: -1 })
@@ -62,6 +67,15 @@ const getCuratedProperties = async (req, res) => {
       .skip((page - 1) * limit);
 
     const total = await Property.countDocuments(query);
+
+    console.log(`📊 Found ${properties.length} properties (total: ${total})`);
+    console.log('📦 Properties:', properties.map(p => ({
+      id: p._id,
+      title: p.title,
+      status: p.status,
+      approvalStatus: p.approvalStatus,
+      isActive: p.isActive
+    })));
 
     res.json({
       success: true,
@@ -83,30 +97,19 @@ const getCuratedProperties = async (req, res) => {
   }
 };
 
-// Get single property details (requires move-out intent)
+// Get single property details (public access)
 const getPropertyById = async (req, res) => {
   try {
-    // Check if user has active move-out intent
-    const user = await User.findById(req.user.userId);
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
+    // Optional: Check if user is authenticated
+    const userId = req.user?.userId;
+    let user = null;
+
+    if (userId) {
+      user = await User.findById(userId);
     }
 
-    const moveOutIntent = user.tenantProfile?.moveOutIntent;
-    if (!moveOutIntent || !moveOutIntent.facilitationRequested) {
-      return res.status(403).json({
-        message: "Property viewing requires move-out intent submission",
-        code: "MOVE_OUT_INTENT_REQUIRED",
-      });
-    }
-
-    if (moveOutIntent.status === "pending") {
-      return res.status(403).json({
-        message:
-          "Complete your move-out request payment to view property details",
-        code: "PAYMENT_REQUIRED",
-      });
-    }
+    // Allow everyone to view property details
+    // Authentication will be required only for application submission
 
     const property = await Property.findById(req.params.id).populate(
       "landlordId",

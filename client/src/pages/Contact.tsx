@@ -144,7 +144,7 @@ export default function Contact() {
 
       {/* Hero Section */}
       <div className="relative bg-ubani-black border-b border-white/10">
-        <PageContainer>
+        <PageContainer className='noPaddingTop'>
           <div className="py-16 sm:py-20 lg:py-24 text-center">
             <h1 className="text-4xl text-white sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6">
               Get in <span className="text-ubani-yellow">Touch</span>
@@ -158,7 +158,7 @@ export default function Contact() {
 
       {/* Contact Form and Info */}
       <div className="py-12 sm:py-16">
-        <PageContainer>
+        <PageContainer className='noPaddingTop'>
           <div className="grid lg:grid-cols-3 gap-8 lg:gap-12">
             {/* Contact Form */}
             <div className="lg:col-span-2">

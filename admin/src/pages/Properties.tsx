@@ -116,6 +116,29 @@ export default function Properties() {
     }
   };
 
+  const handleToggleApproval = async (propertyId: string, newStatus: 'approved' | 'not_approved') => {
+    try {
+      console.log('Toggling approval for property:', propertyId, 'to:', newStatus);
+
+      if (newStatus === 'approved') {
+        const response = await adminApi.approveProperty(propertyId);
+        console.log('Approve property response:', response);
+        toast.success('Property approved successfully');
+      } else {
+        const reason = window.prompt('Enter rejection reason (optional):');
+        const response = await adminApi.rejectProperty(propertyId, reason || 'Not approved by admin');
+        console.log('Reject property response:', response);
+        toast.success('Property marked as not approved');
+      }
+
+      loadProperties();
+    } catch (error: any) {
+      console.error('Failed to toggle approval:', error);
+      const errorMessage = error.response?.data?.message || error.message || 'Failed to update approval status';
+      toast.error(errorMessage);
+    }
+  };
+
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat('en-NG', {
       style: 'currency',
@@ -368,8 +391,7 @@ export default function Properties() {
                 <PropertyCard
                   key={property._id}
                   property={property}
-                  onApprove={handleApproveProperty}
-                  onReject={handleRejectProperty}
+                  onToggleApproval={handleToggleApproval}
                 />
               ))}
             </div>

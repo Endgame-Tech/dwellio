@@ -45,6 +45,9 @@ const propertySchema = new mongoose.Schema(
     ],
     amenities: [{ type: String }],
     description: { type: String, required: true },
+    bedrooms: { type: Number, default: 1 },
+    bathrooms: { type: Number, default: 1 },
+    area: { type: Number },
     rent: {
       amount: { type: Number, required: true },
       period: { type: String, enum: ["monthly", "yearly"], default: "yearly" },
@@ -52,8 +55,16 @@ const propertySchema = new mongoose.Schema(
     deposit: { type: Number, required: true },
     status: {
       type: String,
-      enum: ["available", "occupied", "pending", "approved"],
+      enum: ["available", "occupied", "pending"],
       default: "available",
+    },
+    approvalStatus: {
+      type: String,
+      enum: ["approved", "not_approved", "pending"],
+      default: "pending",
+    },
+    rejectionReason: {
+      type: String,
     },
     isActive: {
       type: Boolean,

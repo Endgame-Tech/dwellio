@@ -13,13 +13,13 @@ import { requireAuth } from "../controllers/authController.js";
 
 const router = express.Router();
 
-// Public routes for area information
+// Public routes - Anyone can browse properties
 router.get("/areas", getPropertyAreas); // Get available areas and property types
+router.get("/", getCuratedProperties); // Get curated properties (public access)
+router.get("/:id", getPropertyById); // Get single property (public access)
 
-// Protected routes - Tenant actions (require move-out intent)
+// Protected routes - Require authentication
 router.get("/eligibility", requireAuth, checkMoveOutEligibility); // Check if user can view properties
-router.get("/", requireAuth, getCuratedProperties); // Get curated properties (requires move-out intent)
-router.get("/:id", requireAuth, getPropertyById); // Get single property (requires move-out intent)
 router.post("/:propertyId/apply", requireAuth, submitApplication); // Submit application
 router.get("/applications/my", requireAuth, getMyApplications); // Get my applications
 router.put(

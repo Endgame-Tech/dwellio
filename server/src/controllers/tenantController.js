@@ -1,4 +1,5 @@
 // ubani/controllers/tenantController.js
+import { uploadImage, deleteImage } from "../config/cloudinary.js";
 import User from "../models/User.js";
 import Application from "../models/Application.js";
 import multer from "multer";
@@ -315,7 +316,6 @@ export const uploadHouseImage = async (req, res) => {
     }
 
     // Upload to Cloudinary
-    const { uploadImage } = require("../config/cloudinary");
     const result = await uploadImage(req.file.buffer, {
       folder: `ubani/house-images/${userId}`,
       public_id: `${category}_${Date.now()}`,
@@ -391,7 +391,6 @@ export const deleteHouseImage = async (req, res) => {
     const image = user.tenantProfile.houseInfo.images[imageIndex];
 
     // Delete from Cloudinary
-    const { deleteImage } = require("../config/cloudinary");
     await deleteImage(image.publicId);
 
     // Remove from user's house info
@@ -423,7 +422,6 @@ export const uploadProfilePhoto = async (req, res) => {
 
     const userId = req.user.userId;
     // Upload to Cloudinary (reuse existing helper)
-    const { uploadImage } = require("../config/cloudinary");
     const result = await uploadImage(req.file.buffer, {
       folder: `ubani/profile-photos/${userId}`,
       public_id: `profile_${Date.now()}`,

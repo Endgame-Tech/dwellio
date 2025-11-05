@@ -1,24 +1,16 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { propertiesApi } from '../services/api';
 import { toast } from 'react-toastify';
 import type { Property } from '../types';
 import Navbar from '../components/Navbar';
 import PageContainer from '../components/PageContainer';
 import Footer from '../components/Footer';
+import PropertyCard from '../components/PropertyCard';
 import {
-  FiMapPin,
   FiSearch,
-  FiFilter,
-  FiHome,
-  FiDroplet,
-  FiSquare,
-  FiDollarSign,
-  FiArrowRight,
-  FiHeart,
-  FiStar,
   FiGrid,
-  FiList
+  FiList,
+  FiHome
 } from 'react-icons/fi';
 
 interface PropertyListItem extends Property {
@@ -26,6 +18,39 @@ interface PropertyListItem extends Property {
   bedrooms: number;
   bathrooms: number;
   images: string[];
+}
+
+// Backend property response type (matches server Property model)
+interface BackendProperty {
+  _id: string;
+  title: string;
+  description: string;
+  type: string;
+  status: string;
+  approvalStatus?: string;
+  isActive: boolean;
+  location: {
+    address: string;
+    city: string;
+    lga: string;
+    state: string;
+  };
+  rent: {
+    amount: number;
+    period: string;
+  };
+  bedrooms?: number;
+  bathrooms?: number;
+  area?: number;
+  amenities: string[];
+  media?: Array<{ url: string; filename?: string }>;
+  landlordContact?: {
+    name: string;
+    phone: string;
+    email: string;
+  };
+  createdAt: string;
+  updatedAt: string;
 }
 
 export default function Properties() {
@@ -43,21 +68,49 @@ export default function Properties() {
         setLoading(true);
         const response = await propertiesApi.getCuratedProperties();
 
+        console.log('🔍 Properties API Response:', response);
+        console.log('✅ Response success:', response.success);
+        console.log('📦 Response data:', response.data);
+        console.log('📊 Response data length:', response.data?.length);
+
         if (response.success && response.data) {
-          const transformedProperties: PropertyListItem[] = response.data.map((prop: Property) => ({
-            ...prop,
-            propertyType: prop.type,
-            bedrooms: prop.features.bedrooms,
-            bathrooms: prop.features.bathrooms,
-            images: prop.media.images
-          }));
+          console.log('🚀 Processing properties...', response.data);
+          const transformedProperties: PropertyListItem[] = response.data.map((prop: BackendProperty | Property) => {
+            // Check if it's backend format (flat structure) or frontend format (nested)
+            const isBackendFormat = 'bedrooms' in prop && typeof (prop as BackendProperty).bedrooms === 'number';
+
+            return {
+              ...prop,
+              propertyType: prop.type,
+              // Handle both nested (frontend type) and flat (backend model) structures
+              bedrooms: isBackendFormat
+                ? (prop as BackendProperty).bedrooms || 0
+                : (prop as Property).features?.bedrooms || 0,
+              bathrooms: isBackendFormat
+                ? (prop as BackendProperty).bathrooms || 0
+                : (prop as Property).features?.bathrooms || 0,
+              // Handle both nested media object and direct media array
+              images: isBackendFormat && Array.isArray((prop as BackendProperty).media)
+                ? (prop as BackendProperty).media!.map(m => m.url)
+                : (prop as Property).media?.images || []
+            } as PropertyListItem;
+          });
+          console.log('✨ Transformed properties:', transformedProperties);
+          console.log('📝 Transformed properties count:', transformedProperties.length);
           setProperties(transformedProperties);
         } else {
+          console.warn('⚠️ No properties data or success=false');
           toast.error('Failed to load properties');
         }
       } catch (error) {
+        const err = error as { message?: string; response?: { data?: { message?: string }; status?: number } };
         console.error('Failed to fetch properties:', error);
-        toast.error('Failed to load properties');
+        console.error('Error details:', {
+          message: err.message,
+          response: err.response?.data,
+          status: err.response?.status
+        });
+        toast.error(err.response?.data?.message || err.message || 'Failed to load properties');
       } finally {
         setLoading(false);
       }
@@ -65,27 +118,6 @@ export default function Properties() {
 
     fetchProperties();
   }, []);
-
-  // Helper functions
-  const formatShortCurrency = (amount: number) => {
-    if (amount >= 1_000_000_000) return `₦${(amount / 1_000_000_000).toFixed(1)}B`;
-    if (amount >= 1_000_000) return `₦${(amount / 1_000_000).toFixed(1)}M`;
-    if (amount >= 1_000) return `₦${(amount / 1_000).toFixed(1)}K`;
-    return `₦${amount}`;
-  };
-
-  const getStatusBadge = (status: string) => {
-    switch (status) {
-      case 'available':
-        return <span className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold bg-ubani-yellow/20 text-ubani-yellow border border-ubani-yellow/30">Available</span>;
-      case 'occupied':
-        return <span className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold bg-white/10 text-gray-300 border border-white/20">Occupied</span>;
-      case 'pending':
-        return <span className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold bg-orange-500/20 text-orange-400 border border-orange-500/30">Pending</span>;
-      default:
-        return <span className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold bg-white/10 text-gray-300 border border-white/20">{status}</span>;
-    }
-  };
 
   const filteredProperties = properties.filter(property => {
     const matchesFilter = filter === 'all' || property.status === filter;
@@ -106,91 +138,6 @@ export default function Properties() {
     return matchesFilter && matchesSearch && matchesPriceRange && matchesType;
   });
 
-  // Property Card Component
-  const PropertyCard = ({ property }: { property: PropertyListItem }) => {
-    const imageUrl = property.images?.[0] || 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1000&q=80';
-
-    return (
-      <div className="group relative bg-[#1a1a1a] rounded-3xl shadow-sm hover:shadow-2xl transition-all duration-300 hover:scale-105 border border-white/10 hover:border-ubani-yellow/30 overflow-hidden">
-        {/* Image */}
-        <div className="relative w-full h-64 overflow-hidden">
-          <img src={imageUrl} alt={property.title || 'Property'} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
-
-          {/* Gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-ubani-black/80 via-ubani-black/20 to-transparent opacity-60"></div>
-
-          {/* Heart icon */}
-          <button className="absolute top-4 left-4 w-10 h-10 rounded-full bg-ubani-black/60 backdrop-blur-sm flex items-center justify-center text-white hover:text-ubani-yellow hover:bg-ubani-black/80 transition-all transform hover:scale-110">
-            <FiHeart className="w-5 h-5" />
-          </button>
-
-          {/* Status badge */}
-          <div className="absolute top-4 right-4">
-            {getStatusBadge(property.status)}
-          </div>
-
-          {/* View Details button */}
-          <Link
-            to={`/properties/${property._id}`}
-            className="absolute bottom-4 right-4 w-12 h-12 rounded-full bg-ubani-yellow hover:bg-ubani-yellow/90 flex items-center justify-center text-ubani-black transition-all shadow-xl opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0"
-            title="View Details"
-          >
-            <FiArrowRight className="w-6 h-6" />
-          </Link>
-        </div>
-
-        {/* Content */}
-        <div className="p-6">
-          {/* Location and Rating */}
-          <div className="flex items-start justify-between mb-3">
-            <div className="flex-1">
-              <p className="text-sm font-semibold text-white mb-1">
-                {property.location.city}, {property.location.state}
-              </p>
-              <p className="text-xs text-gray-400 line-clamp-1">
-                {property.location.address}
-              </p>
-            </div>
-            <div className="flex items-center ml-3 bg-ubani-yellow/10 px-2 py-1 rounded-lg">
-              <FiStar className="w-4 h-4 text-ubani-yellow fill-current" />
-              <span className="text-sm font-semibold text-ubani-yellow ml-1">4.8</span>
-            </div>
-          </div>
-
-          {/* Property Type */}
-          <p className="text-sm text-ubani-yellow mb-3 capitalize font-medium">
-            {property.propertyType || 'Apartment'}
-          </p>
-
-          {/* Features */}
-          <div className="flex items-center gap-4 mb-4 text-xs text-gray-400">
-            <div className="flex items-center gap-1.5">
-              <FiHome className="w-4 h-4 text-ubani-yellow" />
-              <span>{property.bedrooms || 'N/A'} beds</span>
-            </div>
-            <div className="flex items-center gap-1.5">
-              <FiDroplet className="w-4 h-4 text-ubani-yellow" />
-              <span>{property.bathrooms || 'N/A'} baths</span>
-            </div>
-            <div className="flex items-center gap-1.5">
-              <FiSquare className="w-4 h-4 text-ubani-yellow" />
-              <span>120 m²</span>
-            </div>
-          </div>
-
-          {/* Price */}
-          <div className="flex items-center justify-between pt-4 border-t border-white/10">
-            <div>
-              <p className="text-2xl font-bold text-white">
-                {formatShortCurrency(property.rent.amount)}
-              </p>
-              <p className="text-sm text-gray-400">per {property.rent.period}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  };
 
   if (loading) {
     return (
@@ -209,7 +156,7 @@ export default function Properties() {
 
       {/* Header */}
       <div className="bg-ubani-black border-b border-white/10">
-        <PageContainer>
+        <PageContainer className='noPaddingTop'>
           <div className="py-12 sm:py-16">
             <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
               <div>
@@ -330,7 +277,7 @@ export default function Properties() {
 
       {/* Properties Content */}
       <div className="py-12 sm:py-16">
-        <PageContainer>
+        <PageContainer className='noPaddingTop'>
           {filteredProperties.length === 0 ? (
             <div className="text-center py-20">
               <div className="w-24 h-24 rounded-3xl bg-ubani-yellow/10 flex items-center justify-center mx-auto mb-6">
@@ -356,7 +303,7 @@ export default function Properties() {
             </div>
           ) : (
             <div className={`grid gap-6 ${viewMode === 'grid'
-              ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
+              ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-6'
               : 'grid-cols-1'
               }`}>
               {filteredProperties.map((property) => (
