@@ -563,7 +563,7 @@ export const getScores = async (req, res) => {
   }
 };
 
-// Verify document (admin function)
+// Verify document (landlord function)
 export const verifyDocument = async (req, res) => {
   try {
     const { userId, documentId, verified, rejectionReason } = req.body;

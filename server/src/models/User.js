@@ -287,7 +287,7 @@ userSchema.methods.calculateCreditScore = function () {
 };
 
 // Update both scores before saving
-// Virtual field for backwards compatibility with admin interface
+// Virtual field for backwards compatibility with landlord interface
 userSchema.virtual("isVerified").get(function () {
   return this.verificationStatus === "verified";
 });

@@ -62,6 +62,12 @@ export default function Properties() {
   const [priceRange, setPriceRange] = useState<string>('all');
   const [propertyType, setPropertyType] = useState<string>('all');
 
+  // Helper function to assign random sizes for masonry grid
+  const getPropertySize = (index: number): 'small' | 'large' | 'wide' | 'tall' => {
+    const pattern = ['small', 'small', 'small', 'small', 'small', 'small', 'large', 'tall', 'small'];
+    return pattern[index % pattern.length] as 'small' | 'large' | 'wide' | 'tall';
+  };
+
   useEffect(() => {
     const fetchProperties = async () => {
       try {
@@ -303,11 +309,15 @@ export default function Properties() {
             </div>
           ) : (
             <div className={`grid gap-6 ${viewMode === 'grid'
-              ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-6'
+              ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-5 auto-rows-auto'
               : 'grid-cols-1'
               }`}>
-              {filteredProperties.map((property) => (
-                <PropertyCard key={property._id} property={property} />
+              {filteredProperties.map((property, index) => (
+                <PropertyCard
+                  key={property._id}
+                  property={property}
+                  size={viewMode === 'grid' ? getPropertySize(index) : 'small'}
+                />
               ))}
             </div>
           )}

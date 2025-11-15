@@ -48,7 +48,7 @@ router.delete("/house-images/:imageId", deleteHouseImage);
 // Credit and verification
 router.put("/credit-history", updateCreditHistory);
 router.get("/scores", getScores);
-router.post("/verify-document", verifyDocument); // Admin only - should add admin middleware
+router.post("/verify-document", verifyDocument); // Landlord only - should add landlord middleware
 router.post("/move-out-facilitation", requestMoveOutFacilitation);
 
 export default router;

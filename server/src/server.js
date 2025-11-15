@@ -9,7 +9,7 @@ import authRoutes from "./routes/authRoutes.js";
 import propertyRoutes from "./routes/propertyRoutes.js";
 import tenantRoutes from "./routes/tenantRoutes.js";
 import paymentRoutes from "./routes/paymentRoutes.js";
-import adminRoutes from "./routes/adminRoutes.js";
+import landlordRoutes from "./routes/landlordRoutes.js";
 
 dotenv.config();
 
@@ -38,7 +38,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/properties", propertyRoutes);
 app.use("/api/tenant", tenantRoutes);
 app.use("/api/payments", paymentRoutes);
-app.use("/api/admin", adminRoutes);
+app.use("/api/landlord", landlordRoutes);
 
 // Health check
 app.get("/api/health", (req, res) => {

@@ -113,7 +113,7 @@ export default function HomePage() {
 
                 {/* Description */}
                 <p className="text-base sm:text-lg text-white leading-relaxed max-w-7xl">
-                  Ubani helps Nigerian tenants secure quality, verified homes with reduced agency fees, transparent documentation, negotiated deposits, and guided onboarding. We combine professional representation with a digital workspace that keeps every step simple, traceable, and stress-free.
+                  Ubani helps Nigerian tenants secure quality, verified homes with reduced agency fees, transparent documentation, negotiated deposits, and guided onboarding.
                 </p>
               </div>
             </div>

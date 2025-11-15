@@ -30,10 +30,10 @@ interface PropertyCardProps {
 export default function PropertyCard({ property, size = 'small' }: PropertyCardProps) {
   // Determine the grid span based on size
   const sizeClasses = {
-    small: 'col-span-1 row-span-1 h-[400px]',
-    large: 'col-span-2 row-span-2 h-[620px]',
-    wide: 'col-span-2 row-span-1 h-[400px]',
-    tall: 'col-span-1 row-span-2 h-[620px]'
+    small: 'col-span-1 row-span-1 h-[320px]',
+    large: 'col-span-2 row-span-2 h-[500px]',
+    wide: 'col-span-2 row-span-1 h-[320px]',
+    tall: 'col-span-1 row-span-2 h-[500px]'
   };
 
   // Get the first image or use a placeholder
@@ -51,13 +51,17 @@ export default function PropertyCard({ property, size = 'small' }: PropertyCardP
   const address = property.location?.address || property.location?.city || 'Location not specified';
   const propertyType = property.propertyType || property.type || 'Property';
 
+  // Use actual rent or demo price
+  const rentAmount = property.rent?.amount || 2500000;
+  const rentPeriod = property.rent?.period || 'yearly';
+
   return (
     <Link
       to={`/properties/${property._id}`}
       className={`group relative overflow-hidden rounded-3xl cursor-pointer bg-[#1a1a1a] border border-white/10 hover:border-ubani-yellow/50 transition-all duration-300 ${sizeClasses[size]}`}
     >
       {/* Background Image */}
-      <div className="absolute inset-0 h-[60%]">
+      <div className="absolute inset-0 ">
         <img
           src={imageUrl}
           alt={property.title || address}
@@ -65,6 +69,20 @@ export default function PropertyCard({ property, size = 'small' }: PropertyCardP
         />
         {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#1a1a1a]"></div>
+      </div>
+
+      {/* Price Badge - Show on hover at top left */}
+      <div className="absolute top-4 left-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform -translate-y-2 group-hover:translate-y-0">
+        <div className="bg-ubani-yellow/95 backdrop-blur-sm px-4 py-2 rounded-full shadow-xl">
+          <div className="flex items-baseline gap-1">
+            <span className="text-lg font-bold text-ubani-black">
+              {formatCurrency(rentAmount)}
+            </span>
+            <span className="text-xs text-ubani-black/70 font-medium">
+              /{rentPeriod}
+            </span>
+          </div>
+        </div>
       </div>
 
       {/* Content */}
@@ -84,13 +102,13 @@ export default function PropertyCard({ property, size = 'small' }: PropertyCardP
         )}
 
         {/* Address */}
-        <div className="flex items-start gap-2 text-gray-400">
+        <div className="flex items-start gap-2 text-white/70">
           <FiMapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
           <p className="text-sm line-clamp-1">{address}</p>
         </div>
 
         {/* Features */}
-        <div className="flex items-center gap-4 text-sm text-gray-400">
+        <div className="flex items-center gap-4 text-sm text-white/70">
           {property.bedrooms !== undefined && (
             <div className="flex items-center gap-1">
               <FiHome className="w-4 h-4" />
@@ -110,24 +128,10 @@ export default function PropertyCard({ property, size = 'small' }: PropertyCardP
             </div>
           )}
         </div>
-
-        {/* Price */}
-        {property.rent && (
-          <div className="pt-2 border-t border-white/10">
-            <div className="flex items-baseline gap-2">
-              <span className="text-2xl font-bold text-ubani-yellow">
-                {formatCurrency(property.rent.amount)}
-              </span>
-              <span className="text-sm text-gray-500">
-                /{property.rent.period || 'year'}
-              </span>
-            </div>
-          </div>
-        )}
       </div>
 
-      {/* Hover Effect Indicator */}
-      <div className="absolute top-4 right-4 w-10 h-10 bg-ubani-yellow rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+      {/* Hover Effect Indicator - Arrow at top right */}
+      <div className="absolute top-4 right-4 w-10 h-10 bg-ubani-yellow rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
         <svg className="w-5 h-5 text-ubani-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
         </svg>

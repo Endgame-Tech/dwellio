@@ -8,7 +8,7 @@ Ubani is a modern property management web application that facilitates property 
 - Property listings with interactive image carousels
 - Search and filter capabilities for property discovery
 - Responsive design following Airbnb-style UI principles
-- Role-based access control (tenant, landlord, admin)
+- Role-based access control (tenant, landlord, landlord)
 
 ## Tech Stack
 
